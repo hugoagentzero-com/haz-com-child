@@ -1,4 +1,4 @@
 github.com/hugo-agent-zero/hugo-agent-zero-core v1.0.1-0.20260916230255-45957094370b h1:pZ1X6Xe9brkuy44WcluLjXJgdehvP+Y+FZGEYNHKCWU=
 github.com/hugo-agent-zero/hugo-agent-zero-core v1.0.1-0.20260916230255-45957094370b/go.mod h1:lQf8ZgwIUhsQGIAKWB+11Gz6yrzxoQ/1rTO6UyNKWQQ=
-github.com/hugo-agent-zero/hugo-agent-zero-env-staging-content v0.0.0-20260923195502-99ba61dd0357 h1:cK3izCGTZdnm8z1PJDwI0tAX+qf/VcYRT63/f/YWSK8=
-github.com/hugo-agent-zero/hugo-agent-zero-env-staging-content v0.0.0-20260923195502-99ba61dd0357/go.mod h1:ZoX7nlw23rPIyaYPYCJ/NWavpwhhvJJvRO9g3wFeX1Y=
+github.com/hugoagentzero-com/haz-com-content v0.0.0-20260923204224-a679e357ea33 h1:9uGOtVeX6uEyHKLWaRz4w4qm9DSVf36wxJ+ICSR6jDo=
+github.com/hugoagentzero-com/haz-com-content v0.0.0-20260923204224-a679e357ea33/go.mod h1:QEcsbjoW3dgSbITU6ANwrjWX95raC7WYqwtjJkY+QEc=

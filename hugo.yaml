@@ -60,7 +60,7 @@ module:
     min: 0.146.0
   imports:
     - path: github.com/hugo-agent-zero/hugo-agent-zero-core
-    - path: github.com/hugo-agent-zero/hugo-agent-zero-env-staging-content
+    - path: github.com/hugoagentzero-com/haz-com-content
       mounts:
         - source: content
           target: content
