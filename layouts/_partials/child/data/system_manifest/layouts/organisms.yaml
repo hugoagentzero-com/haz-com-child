@@ -1,0 +1,134 @@
+organisms:
+  head:
+    enabled: true
+    part:
+      file: haz/atomic/organisms/head.html
+    props: {}
+    children:
+      enabled_false:
+        enabled: false
+        child: head_false
+        level: atoms
+        inst: todo
+      head_main:
+        enabled: true
+        level: multipliers
+        inst: head_main
+  cols:
+    cols_two_tag_wrapper_header:
+      enabled: true
+      part:
+        folder: haz/atomic/organisms/cols/cols_two_tag_wrapper_000
+        preset: preset_header
+      children:
+        enabled_false:
+          enabled: false
+          child: cols_two_tag_wrapper_header_false
+          level: atoms
+          inst: todo
+        col_brand:
+          enabled: true
+          level: molecules
+          group: brand
+          inst: brand_logo_dual_000
+        col_other:
+          enabled: true
+          level: molecules
+          inst: header_000_controls
+        row_below:
+          enabled: true
+          level: molecules
+          inst: nav_main_panel_000
+    cols_two_tag_wrapper_footer:
+      enabled: true
+      part:
+        folder: haz/atomic/organisms/cols/cols_two_tag_wrapper_000
+        preset: preset_footer
+      children:
+        enabled_false:
+          enabled: false
+          child: cols_two_tag_wrapper_footer_false
+          level: atoms
+          inst: todo
+        col_brand:
+          enabled: true
+          level: molecules
+          group: brand
+          inst: footer_brand_000
+        col_other:
+          enabled: true
+          level: atoms
+          inst: nav_tertiary
+        row_below:
+          enabled: true
+          level: atoms
+          inst: copyright_000
+  sections:
+    default_000:
+      enabled: true
+      part:
+        file: haz/atomic/organisms/sections/default_000.html
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: default_000_false
+          level: atoms
+          inst: todo
+    blog_index_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - blog_title
+        - blog_meta
+        - blog_content
+        - blog_pages
+      children:
+        enabled_false:
+          enabled: false
+          child: blog_000_false
+          level: atoms
+          inst: todo
+        blog_title:
+          enabled: true
+          level: atoms
+          group: page
+          inst: page_title_wrapper_000
+        blog_meta:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: blog_index_meta_wrapper_000
+        blog_content:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: blog_content_000
+        blog_pages:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: blog_pages_list_000
+  search:
+    search_pagefind_modal_000:
+      enabled: true
+      part:
+        folder: haz/atomic/organisms/search/search_pagefind_modal_000
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: search_pagefind_modal_000_false
+          level: atoms
+          inst: todo
+        close_icon:
+          enabled: true
+          level: atoms
+          inst: svg_close_x_000
+        content:
+          enabled: true
+          level: multipliers
+          inst: search_pagefind_modal_000_content
+

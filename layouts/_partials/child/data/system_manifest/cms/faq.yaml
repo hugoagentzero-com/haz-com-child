@@ -1,0 +1,19 @@
+faq:
+  molecules:
+    details:
+      list_details_summary_000:
+        props:
+          collection:
+            - key: what_is
+              enabled: true
+              summary: What is Hugo Agent Zero?
+              details: "<p>HAZ is an Atomic, layouts-driven Hugo kit — compose pages from reusable atoms and molecules instead of one-off templates.</p>"
+            - key: details_native
+              enabled: true
+              summary: Why native details and summary?
+              details: "<p>No JavaScript for open/close. Accessible disclosure that works with Pico and plain HTML. Accordion exclusivity can wait.</p>"
+              open: true
+            - key: parked_demo
+              enabled: false
+              summary: Parked FAQ row (enabled false)?
+              details: "<p>This row stays in the CMS collection but never renders — <code>fn_collection_filter</code> drops disabled rows.</p>"

@@ -1,0 +1,14 @@
+file_local:
+  molecules:
+    ctas:
+      cta_simple_000:
+        preset: content/presets/atomic/molecules/ctas/cta_simple_000_30.yaml
+        props:
+          text_start: "start from cms.data "
+          a_href:
+            enabled: true
+            attrs:
+              href: "https://ccc.com"
+              target: "_self"
+            text: " anchor text from cms.data"
+          text_end: " end from cms.data."

@@ -1,0 +1,12 @@
+headless:
+  molecules:
+    ctas:
+      cta_simple_000:
+        folder: /cms/headless/atomic/molecules/ctas/cta_simple_000
+        preset: content/presets/atomic/molecules/ctas/cta_simple_000_30.yaml
+        props:
+          a_href:
+            text: "anchor 123 text"
+    details:
+      list_details_summary_headless_000:
+        folder: /cms/headless/atomic/molecules/details/list_details_summary_000

@@ -1,0 +1,14 @@
+{{- /*
+Child-maintained optional route type filter.
+
+Args:
+- route_type: computed core route type (from .Layout / .Kind logic)
+- context: page context
+
+Return:
+- string override route type, or original route_type for pass-through
+*/ -}}
+{{- $routeType := index . "route_type" | default "" -}}
+{{- $context := index . "context" | default dict -}}
+{{- /* ADD CONTEXT-BASED ROUTE TYPE OVERRIDES HERE */ -}}
+{{- return $routeType -}}

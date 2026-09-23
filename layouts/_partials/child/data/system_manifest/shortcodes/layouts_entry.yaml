@@ -1,0 +1,37 @@
+# Shared terminal registry for both resolution directions.
+map_layouts_entry:
+  page_about_000:
+    enabled: true
+    level: molecules
+    group: section_headers
+    inst: shortcode_page_000
+
+  page_test_000:
+    enabled: true
+    level: molecules
+    group: section_headers
+    inst: shortcode_page_000
+
+  page_default_000:
+    enabled: true
+    level: molecules
+    group: section_headers
+    inst: shortcode_page_000
+
+  blog_route_000:
+    enabled: true
+    level: molecules
+    group: section_headers
+    inst: shortcode_blog_000
+
+  blog_route_010:
+    enabled: true
+    level: molecules
+    group: section_headers
+    inst: shortcode_blog_demo_post_2_000
+
+  blog_default_000:
+    enabled: true
+    level: molecules
+    group: section_headers
+    inst: shortcode_blog_000

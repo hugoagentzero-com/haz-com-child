@@ -1,0 +1,409 @@
+/* Child Pico overrides.
+   Customize via CSS variables (do not edit pico.min.css):
+   https://picocss.com/docs/css-variables
+
+   Color themes: full prebuilt skins live beside vanilla, e.g. pico.pink.min.css
+   (pico.min.css kept on disk — swap framework_css 1_main to demo how easy switching is).
+   Prototype via CDN also works (http(s) hrefs), e.g.
+     https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.jade.min.css
+   Child can also host a downloaded theme under this folder.
+*/
+
+/* #57 — mobile-first: tighter outside gutters (95%); 90% from 40rem up.
+   This is screen-edge → measure column, not padding inside main/aside. */
+:root,
+:host {
+  --haz_measure: min(45rem, 95%);
+  /* One chrome pink for text + SVG fill (Pico’s --pico-primary, not --pico-primary-background). */
+  --haz_chrome: var(--pico-primary);
+
+  /*
+    #51 — measure as constant → fluid root type.
+    sweet/type both 65ch at rest → delta = 1.
+    min: 100% (browser base). val: 0.9rem + --haz_font_vw (no * delta).
+    max: 112.5% * delta. Lower --haz_font_vw → ~16px floor at a wider viewport.
+    Exercise delta: live-edit --haz_measure_type (e.g. 80ch / 40ch).
+    ch is the locked spine — do not silently revert to rem without Mark.
+  */
+  --haz_measure_sweet: 65ch;
+  --haz_measure_type: 65ch;
+  --haz_measure_delta: calc(var(--haz_measure_type) / var(--haz_measure_sweet));
+  --haz_font_vw: 0.33vw;
+  --haz_font_val: calc(0.9rem + var(--haz_font_vw));
+  --haz_font_max: calc(112.5% * var(--haz_measure_delta));
+  --pico-font-size: clamp(100%, var(--haz_font_val), var(--haz_font_max));
+}
+
+@media (min-width: 40rem) {
+  :root,
+  :host {
+    --haz_measure: min(45rem, 90%);
+  }
+}
+
+/* Light pink primary is soft on white (~5.5:1). Darken for links/chrome (~7.9:1 AAA).
+   Button fills keep Pico’s --pico-primary-background. */
+html[data-theme="light"] {
+  --pico-primary: #9d1945;
+  --pico-primary-hover: #7a1438;
+  --pico-primary-underline: rgba(157, 25, 69, 0.5);
+}
+
+#haz_btn_color_scheme,
+#haz_btn_nav_main,
+#haz_btn_search {
+  background: none;
+  color: var(--haz_chrome);
+}
+
+#haz_btn_color_scheme svg,
+#haz_btn_nav_main svg,
+#haz_btn_search svg,
+.haz_search_pagefind_modal__close svg,
+html[data-theme="dark"] .haz_svg__moon_000,
+html[data-theme="light"] .haz_svg__sun_000 {
+  fill: var(--haz_chrome);
+}
+
+#haz_btn_color_scheme:hover svg,
+#haz_btn_color_scheme:focus-visible svg,
+#haz_btn_nav_main:hover svg,
+#haz_btn_nav_main:focus-visible svg,
+#haz_btn_search:hover svg,
+#haz_btn_search:focus-visible svg,
+.haz_search_pagefind_modal__close:hover svg,
+.haz_search_pagefind_modal__close:focus-visible svg {
+  fill: var(--pico-primary-hover);
+}
+
+.haz_search_pagefind_modal__close {
+  background: none;
+  color: var(--haz_chrome);
+}
+
+.haz_header_site__brand {
+  display: flex;
+  align-items: center;
+  max-width: 53vw; /* child tweak — wordmark room vs controls; revisit per brand art */
+  min-width: 0;
+  color: var(--haz_chrome);
+}
+
+.haz_header_site__brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  line-height: 0;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.haz_header_site__brand svg {
+  fill: var(--haz_chrome);
+  max-width: 100%;
+}
+
+.haz_svg {
+  display: block;
+  height: 1rem;
+  width: auto;
+}
+
+.haz_brand__name,
+.haz_brand__logo {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.haz_brand__logo .haz_svg {
+  height: 2.175rem;
+}
+
+.haz_brand__name .haz_svg {
+  height: 1.75rem;
+}
+
+html:not([data-scrolled="true"]) .haz_brand__logo {
+  display: none;
+}
+
+html[data-scrolled="true"] .haz_brand__name {
+  display: none;
+}
+
+/* Main header panel — nav + socials, soft open/close */
+#haz_nav_main_panel {
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.28s ease, opacity 0.22s ease;
+}
+
+html.haz_state__nav_open #haz_nav_main_panel {
+  max-height: 20rem;
+  opacity: 1;
+}
+
+#haz_nav_main {
+  align-self: center;
+  margin-block: 1rem;
+}
+
+/* Full-bleed separator: space above (padding) / border / space below (margin). */
+html.haz_state__nav_open body > header {
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: var(--pico-border-width, 0.0625rem) solid var(--haz_chrome, var(--pico-primary));
+}
+
+#haz_nav_main .haz_nav_main__menu {
+  justify-content: center;
+  gap: 1rem;
+  margin: 0;
+  padding: 0.35rem 0 0;
+  list-style: none;
+}
+
+#haz_nav_main .haz_nav_main__item {
+  margin: 0;
+  padding: 0;
+}
+
+#haz_nav_main .haz_nav_main__link {
+  font-size: 1.5rem;
+  line-height: 1.25;
+  padding-block: 0.2rem;
+}
+
+#haz_nav_main .haz_nav_main__link.haz_is_active,
+.haz_nav_tertiary__link.haz_is_active {
+  text-decoration: underline;
+  text-underline-offset: var(--pico-text-underline-offset, 0.1rem);
+}
+
+p.haz_tagline {
+  margin: 0;
+  color: var(--haz_chrome);
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+#haz_nav_main_panel > .haz_tagline {
+  text-align: center;
+}
+
+/* Footer: two-col bar — DOM brand (on_load) first, visual right via row-reverse */
+.haz_footer_site > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.haz_footer_site__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+  max-width: 100%;
+  color: var(--haz_chrome);
+}
+
+.haz_footer_site__brand svg,
+.haz_footer_site__col_other svg {
+  fill: var(--haz_chrome);
+}
+
+.haz_footer_site__brand .haz_svg {
+  display: block;
+  height: 1.5rem;
+  width: auto;
+  max-width: 100%;
+}
+
+.haz_footer_site__col_other {
+  min-width: 0;
+}
+
+@media (max-width: 40rem) {
+  .haz_footer_site > div:first-child {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .haz_footer_site__brand {
+    align-items: center;
+  }
+
+  .haz_footer_site__col_other .haz_nav_tertiary__menu {
+    justify-content: center;
+  }
+
+  .haz_footer_site > div:nth-child(2) {
+    text-align: center;
+  }
+}
+
+.haz_footer_site > div:nth-child(2) {
+  padding-bottom: 1rem;
+}
+
+.haz_copyright_000 {
+  margin: 0;
+  font-size: 0.875rem;
+  opacity: 0.85;
+}
+
+/* Footer tertiary nav — horizontal utility links in col_other */
+.haz_footer_site__col_other .haz_nav_tertiary__menu {
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.haz_footer_site__col_other .haz_nav_tertiary__item {
+  margin: 0;
+  padding: 0;
+}
+
+.haz_footer_site__col_other .haz_nav_tertiary__link {
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+
+/* Socials — FA Free SVGs via CSS mask + data-haz_icon (no webfonts).
+   Same horizontal inset as measure-shell content (main/aside), for both the header
+   panel instance and body-level pre_footer — do not move this to body > nav only. */
+.haz_socials {
+  display: block;
+  margin-block: 1rem;
+  padding-inline: var(--pico-block-spacing-horizontal, var(--pico-spacing, 1rem));
+}
+
+.haz_socials__menu {
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.haz_socials__item {
+  margin: 0;
+  padding: 0;
+}
+
+.haz_socials__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  text-decoration: none;
+  color: var(--haz_chrome);
+}
+
+.haz_socials__link[data-haz_icon] {
+  background-color: var(--haz_chrome);
+  -webkit-mask-image: var(--haz_icon_url);
+  mask-image: var(--haz_icon_url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.haz_socials__link[data-haz_icon]:hover,
+.haz_socials__link[data-haz_icon]:focus-visible {
+  background-color: var(--pico-primary-hover);
+}
+
+.haz_socials__link[data-haz_icon="facebook"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/facebook.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="x"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/x-twitter.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="tiktok"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/tiktok.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="instagram"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/instagram.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="linkedin"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/linkedin.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="mail"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/solid/envelope.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="phone"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/solid/phone.svg" | relURL }}"); }
+
+/* FAQ / details list */
+.haz_section--faq {
+  margin-block: 2rem;
+}
+
+.haz_section_header {
+  margin-block: 2rem 1rem;
+}
+
+.haz_section--faq .haz_section_header {
+  margin-block: 0 1rem;
+}
+
+.haz_section_header__desc {
+  margin-block: 0.5rem 0;
+}
+
+.haz_details_list {
+  margin-block: 0 2rem;
+}
+
+.haz_section--faq .haz_details_list {
+  margin-block: 0;
+}
+
+.haz_details_list .haz_details {
+  margin-block: 0.5rem;
+}
+
+.haz_details {
+  margin-bottom: 0.5rem;
+  background-color: var(--pico-card-background-color);
+  box-shadow: var(--pico-card-box-shadow);
+  padding: var(--pico-spacing, 1rem);
+  border-radius: var(--pico-border-radius);
+}
+
+.haz_details > summary:not([role]),
+.haz_details > summary:not([role]):focus,
+.haz_details[open] > summary:not([role]),
+.haz_details[open] > summary:not([role]):not(:focus) {
+  cursor: pointer;
+  color: var(--haz_chrome);
+  line-height: 1.5rem;
+}
+
+.haz_details > summary::after {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: none;
+  background-color: var(--haz_chrome);
+  -webkit-mask-image: var(--pico-icon-chevron);
+  mask-image: var(--pico-icon-chevron);
+  -webkit-mask-size: 1.5rem auto;
+  mask-size: 1.5rem auto;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: right center;
+  mask-position: right center;
+}
+
+.haz_details > :not(summary) {
+  margin-block: 0.5rem 0;
+  color: var(--pico-color);
+}
+

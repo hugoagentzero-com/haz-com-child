@@ -1,0 +1,196 @@
+routes:
+  # Ordered list — first match wins. Paths: no leading/trailing slash (blog/* not /blog/*). Home = "".
+  # key_child selects the map_child profile key (route selector key).
+  # Page-kind body classes live in map_body_attrs (haz_single / haz_list + haz_blog / haz_page) — not on <article>.
+  rules:
+    - match: ""
+      enabled: true
+      key_child: single_home_000
+      key_body_attrs: single_page
+    - match: blog/*
+      enabled: true
+      key_child: single_blog_000
+      key_body_attrs: single_blog
+    - match: blog
+      enabled: true
+      key_child: blog_index_000
+      key_body_attrs: list_blog
+    - match: about/*
+      enabled: true
+      key_child: about_000
+      key_body_attrs: single_page
+
+  # key_child → route profile (fn_router_processor reads this)
+  # profile enabled branch objects:
+  # - enabled_true.key_layouts_entry / enabled_false.key_layouts_entry
+  # - enabled_true.key_body_attrs / enabled_false.key_body_attrs
+  # - enabled_true.main / enabled_false.main (bool; omit = true → <main> + skip-to-main)
+  map_child:
+    single_home_000:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: single_home_000
+        key_body_attrs: single_page
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    single_blog_000:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: single_blog_000
+        key_body_attrs: single_blog
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    about_000:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: single_blog_000
+        key_body_attrs: single_page
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    pages:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: single_page_000
+        key_body_attrs: single_page
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    blog_index_000:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: blog_index_000
+        key_body_attrs: list_blog
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    _taxonomy_000:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: taxonomy_000
+        key_body_attrs: list
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    _term_000:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: term_000
+        key_body_attrs: list
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    # Parked reminder: omit `main` → true. Set false to drop <main> and skip-to-main.
+    _main_false:
+      enabled: false
+      enabled_true:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+        main: false
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+        main: false
+
+  # key_layouts_entry points to map_layouts_entry (the singular route entry target).
+  # routes decides one start entry; layouts.yaml owns full component graph.
+  map_layouts_entry:
+    single_home_000:
+      enabled: true
+      level: atoms
+      group: page
+      inst: single_page_wrapper_000
+    single_blog_000:
+      enabled: true
+      level: atoms
+      group: blog
+      inst: single_blog_wrapper_000
+    single_page_000:
+      enabled: true
+      level: atoms
+      group: page
+      inst: single_page_wrapper_000
+    blog_index_000:
+      enabled: true
+      level: atoms
+      group: blog
+      inst: blog_index_section_wrapper_000
+    blog_000:
+      enabled: true
+      level: atoms
+      group: blog
+      inst: blog_index_section_wrapper_000
+    taxonomy_000:
+      enabled: true
+      level: organisms
+      group: sections
+      inst: default_000
+    term_000:
+      enabled: true
+      level: organisms
+      group: sections
+      inst: default_000
+
+  # key_body_attrs → <body> attrs dict (manifest props.attrs shape; class concat on merge)
+  # Page kind (not haz_state__*): layout shape + content kind for styling hooks outside <article>.
+  map_body_attrs:
+    single_blog:
+      enabled: true
+      attrs:
+        class: haz_single haz_blog
+    single_page:
+      enabled: true
+      attrs:
+        class: haz_single haz_page
+    list_blog:
+      enabled: true
+      attrs:
+        class: haz_list haz_blog
+    list:
+      enabled: true
+      attrs:
+        class: haz_list
+
+  defaults:
+    home:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: single_home_000
+        key_body_attrs: single_page
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    section:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: blog_000
+        key_body_attrs: list_blog
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    single:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: single_page_000
+        key_body_attrs: single_page
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    taxonomy:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: taxonomy_000
+        key_body_attrs: list
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""
+    term:
+      enabled: true
+      enabled_true:
+        key_layouts_entry: term_000
+        key_body_attrs: list
+      enabled_false:
+        key_layouts_entry: ""
+        key_body_attrs: ""

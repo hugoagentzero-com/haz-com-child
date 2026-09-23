@@ -1,0 +1,26 @@
+# Vertical resolution:
+# current route → shortcode profile → layouts entry.
+# Each route keeps all of its shortcode profiles together under keys.
+# Missing/parked key = continue fallback; present enabled:false = hard stop.
+route_key:
+  rules:
+    - match: blog/demo-post-2
+      enabled: true
+      keys:
+        blog_000:
+          enabled: true
+          key_layouts_entry: blog_route_010
+
+    - match: blog/*
+      enabled: true
+      keys:
+        blog_000:
+          enabled: true
+          key_layouts_entry: blog_route_000
+
+  # Used when no matching route supplies the requested shortcode profile.
+  defaults:
+    keys:
+      blog_000:
+        enabled: true
+        key_layouts_entry: blog_default_000

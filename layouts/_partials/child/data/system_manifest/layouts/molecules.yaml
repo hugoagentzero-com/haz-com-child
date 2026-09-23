@@ -1,0 +1,497 @@
+molecules:
+  brand:
+    brand_logo_dual_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/brand/brand_logo_dual_000
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: brand_logo_dual_000_false
+          level: atoms
+          inst: todo
+        on_load:
+          enabled: true
+          level: atoms
+          group: brand
+          inst: brand_on_load
+        on_scroll:
+          enabled: true
+          level: atoms
+          group: brand
+          inst: brand_on_scroll
+        scroll_js:
+          enabled: true
+          level: atoms
+          inst: script_scroll_toggle_000
+    footer_brand_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - brand
+        - tagline
+      children:
+        enabled_false:
+          enabled: false
+          child: footer_brand_000_false
+          level: atoms
+          inst: todo
+        brand:
+          enabled: true
+          level: atoms
+          group: brand
+          inst: brand_on_load
+        tagline:
+          enabled: true
+          level: atoms
+          group: brand
+          inst: tagline_000
+  ctas:
+    cta_simple_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/ctas/cta_simple_000
+        preset: preset_000
+        cms:
+          provider: file_local
+          level: molecules
+          group: ctas
+          inst: cta_simple_000
+      props:
+        a_href:
+          text: 'anchor override from layouts'
+      children:
+        enabled_false:
+          enabled: false
+          child: cta_simple_000_false
+          level: atoms
+          inst: todo
+  socials:
+    socials_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/socials/socials_000
+        cms:
+          provider: socials
+          level: molecules
+          group: socials
+          inst: socials_000
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: socials_000_false
+          level: atoms
+          inst: todo
+  pre_footer:
+    pre_footer_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - faq
+        - socials
+      children:
+        enabled_false:
+          enabled: false
+          child: pre_footer_000_false
+          level: atoms
+          inst: todo
+        faq:
+          enabled: true
+          level: atoms
+          group: details
+          inst: faq_section_wrapper_000
+        socials:
+          enabled: true
+          level: molecules
+          group: socials
+          inst: socials_000
+  section_headers:
+    section_header_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/section_headers/section_header_000
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: section_header_000_false
+          level: atoms
+          inst: todo
+    shortcode_page_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/section_headers/section_header_000
+      props:
+        tag: aside
+        attrs:
+          data:
+            haz_shortcode: page
+        slots:
+          - tag: p
+            content: Shortcode key=page
+      children:
+        enabled_false:
+          enabled: false
+          child: shortcode_page_000_false
+          level: atoms
+          inst: todo
+    shortcode_blog_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/section_headers/section_header_000
+      props:
+        tag: aside
+        attrs:
+          data:
+            haz_shortcode: blog
+        slots:
+          - tag: p
+            content: Shortcode key=blog
+      children:
+        enabled_false:
+          enabled: false
+          child: shortcode_blog_000_false
+          level: atoms
+          inst: todo
+    shortcode_blog_demo_post_2_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/section_headers/section_header_000
+      props:
+        tag: aside
+        attrs:
+          data:
+            haz_shortcode: blog
+            haz_shortcode_route: demo_post_2
+        slots:
+          - tag: p
+            content: Shortcode key=blog single=demo-post-2
+      children:
+        enabled_false:
+          enabled: false
+          child: shortcode_blog_demo_post_2_000_false
+          level: atoms
+          inst: todo
+    section_header_faq_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/section_headers/section_header_000
+        preset: preset_faq
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: section_header_faq_000_false
+          level: atoms
+          inst: todo
+  details:
+    list_details_summary_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/details/list_details_summary_000
+        cms:
+          provider: faq
+          level: molecules
+          group: details
+          inst: list_details_summary_000
+      props:
+        attrs:
+          class: haz_details haz_details--src-faq
+          data:
+            haz_cms: faq
+        # Demo: only one key from the faq.yaml collection (parked_demo already dropped via enabled).
+        # Optional override: fn: haz/helpers/fn/fn_collection_filter (omit = that default).
+        filter:
+          prop: key
+          op: eq
+          value: what_is
+      children:
+        enabled_false:
+          enabled: false
+          child: list_details_summary_000_false
+          level: atoms
+          inst: todo
+    list_details_summary_headless_000:
+      enabled: true
+      part:
+        folder: haz/atomic/molecules/details/list_details_summary_000
+        cms:
+          provider: headless
+          level: molecules
+          group: details
+          inst: list_details_summary_headless_000
+      props:
+        attrs:
+          class: haz_details haz_details--src-headless
+          data:
+            haz_cms: headless
+        # Optional: fn: … to swap the filter partial; enabled: false = row-gate only.
+        filter:
+          order: random
+      children:
+        enabled_false:
+          enabled: false
+          child: list_details_summary_headless_000_false
+          level: atoms
+          inst: todo
+    faq_list_sources_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - from_faq_yaml
+        - from_headless
+        - from_atom_collection
+      children:
+        enabled_false:
+          enabled: false
+          child: faq_list_sources_000_false
+          level: atoms
+          inst: todo
+        from_faq_yaml:
+          enabled: true
+          level: molecules
+          group: details
+          inst: list_details_summary_000
+        from_headless:
+          enabled: true
+          level: molecules
+          group: details
+          inst: list_details_summary_headless_000
+        from_atom_collection:
+          enabled: true
+          level: atoms
+          group: details
+          inst: faq_single_filtered_poc_000
+    faq_pack_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - faq_section_header
+        - faq_list
+      children:
+        enabled_false:
+          enabled: false
+          child: faq_pack_000_false
+          level: atoms
+          inst: todo
+        faq_section_header:
+          enabled: true
+          level: molecules
+          group: section_headers
+          inst: section_header_faq_000
+        faq_list:
+          enabled: true
+          level: atoms
+          group: details
+          inst: faq_list_wrapper_000
+  page:
+    page_h1_title_content_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+       
+        attrs:
+          id: haz_post_title
+    single_page_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - single_page_title_000
+        - single_page_content_000
+        attrs:
+          class: single_blog_000
+      children:
+        enabled_false:
+          enabled: false
+          child: single_page_000_false
+          level: atoms
+          inst: todo
+        single_page_title_000:
+          enabled: true
+          level: atoms
+          group: page
+          inst: page_title_wrapper_000
+        single_page_content_000:
+          enabled: true
+          level: atoms
+          group: page
+          inst: page_content_wrapper_000
+  button_color_scheme:
+    enabled: true
+    part:
+      file: haz/atomic/molecules/button_toggle_000.html
+    props:
+      description: Color scheme
+      attrs:
+        id: haz_btn_color_scheme
+        class: haz_btn haz_margin_bottom_0 haz_display_block_inner_svg
+        aria-label: Toggle color scheme
+        aria-pressed: 'false'
+      sr_only: true
+    children:
+      enabled_false:
+        enabled: false
+        todo: 'true'
+      icon_true:
+        enabled: true
+        level: atoms
+        inst: svg_sun_000
+      icon_false:
+        enabled: true
+        level: atoms
+        inst: svg_moon_000
+      button_js:
+        enabled: true
+        level: atoms
+        inst: script_color_scheme
+  nav_main_hamburger:
+    enabled: true
+    part:
+      file: haz/atomic/molecules/button_toggle_000.html
+    props:
+      description: Menu
+      attrs:
+        id: haz_btn_nav_main
+        class: haz_btn haz_margin_bottom_0 haz_display_block_inner_svg
+        aria-expanded: 'false'
+        aria-controls: haz_nav_main_panel
+        data:
+          haz_toggler: 'true'
+          haz_toggle: haz_state__nav_open
+    children:
+      enabled_false:
+        enabled: false
+      icon_true:
+        enabled: true
+        level: atoms
+        inst: svg_hamburger_000
+      icon_false:
+        enabled: true
+        level: atoms
+        inst: svg_close_x_000
+      button_js:
+        enabled: false
+        level: atoms
+        inst: todo
+  button_search:
+    enabled: true
+    part:
+      file: haz/atomic/molecules/button_toggle_000.html
+    props:
+      description: Search
+      sr_only: true
+      attrs:
+        id: haz_btn_search
+        class: haz_btn haz_search haz_margin_bottom_0 haz_display_block_inner_svg
+        aria-expanded: 'false'
+        aria-controls: haz_search_pagefind_modal
+        data:
+          haz_modal: 'true'
+    children:
+      enabled_false:
+        enabled: false
+      icon_true:
+        enabled: true
+        level: atoms
+        inst: svg_search_000
+      icon_false:
+        enabled: true
+        level: atoms
+        inst: svg_close_x_000
+      button_js:
+        enabled: false
+        level: atoms
+        inst: todo
+  nav_main_panel_000:
+    enabled: true
+    part:
+      file: haz/helpers/multipliers/multiplier.html
+    props:
+      order:
+      - nav_main
+      - socials
+      - tagline
+    children:
+      enabled_false:
+        enabled: false
+        child: nav_main_panel_000_false
+        level: atoms
+        inst: todo
+      nav_main:
+        enabled: true
+        level: atoms
+        inst: nav_main
+      socials:
+        enabled: true
+        level: molecules
+        group: socials
+        inst: socials_000
+      tagline:
+        enabled: true
+        level: atoms
+        group: brand
+        inst: tagline_000
+  header_000_controls:
+    enabled: true
+    part:
+      file: haz/helpers/multipliers/multiplier.html
+    props:
+      order:
+      - search
+      - color_scheme
+      - nav_main_button
+    children:
+      enabled_false:
+        enabled: false
+        child: header_000_controls_false
+        level: atoms
+        inst: todo
+      # Disable search here AND block_main_pre.search to drop kit search.
+      search:
+        enabled: true
+        level: molecules
+        inst: button_search
+      color_scheme:
+        enabled: true
+        level: molecules
+        inst: button_color_scheme
+      nav_main_button:
+        enabled: true
+        level: molecules
+        inst: nav_main_hamburger
+  _footer_col_other:
+    enabled: false
+    part:
+      file: haz/helpers/multipliers/multiplier.html
+    props:
+      order:
+      - nav_tertiary
+      - socials
+    children:
+      enabled_false:
+        enabled: false
+        child: footer_col_other_false
+        level: atoms
+        inst: todo
+      nav_tertiary:
+        enabled: true
+        level: atoms
+        inst: nav_tertiary
+      socials:
+        enabled: true
+        level: molecules
+        group: socials
+        inst: socials_000

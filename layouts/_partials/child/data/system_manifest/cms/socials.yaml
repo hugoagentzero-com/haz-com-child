@@ -1,0 +1,40 @@
+socials:
+  molecules:
+    socials:
+      socials_000:
+        props:
+          collection:
+            - name: Facebook
+              enabled: true
+              type: social
+              url: https://facebook.com/
+              icon: facebook
+              target: _blank
+            - name: X
+              enabled: true
+              type: social
+              url: https://x.com/
+              icon: x
+              target: _blank
+            - name: TikTok
+              enabled: true
+              type: social
+              url: https://tiktok.com/
+              icon: tiktok
+              target: _blank
+            - name: Instagram
+              enabled: true
+              type: social
+              url: https://instagram.com/
+              icon: instagram
+              target: _blank
+            - name: Email
+              enabled: true
+              type: mail
+              url: mailto:hello@example.com
+              icon: mail
+            - name: Phone
+              enabled: true
+              type: phone
+              url: tel:+15555550100
+              icon: phone

@@ -1,0 +1,63 @@
+settings:
+  site:
+    name: Hugo Agent Zero
+    tagline: The is our FPO Hugo Agent Zero Tag Line
+    copyright: Hugo Agent Zero # legal holder; may differ from site.name
+  dates:
+    default: publishdate
+    publishdate:
+      term: Published
+      format_display: "January 2, 2006"
+      format_datetime: "2006-01-02"
+      pubdate: true
+    date:
+      term: Published
+      format_display: "January 2, 2006"
+      format_datetime: "2006-01-02"
+      pubdate: true
+    lastmod:
+      term: Updated
+      format_display: "January 2, 2006"
+      format_datetime: "2006-01-02"
+      pubdate: false
+      require_explicit: true
+      must_be_after: publishdate
+      must_be_after_seconds: 0
+  desc:
+    desc_short:
+      term: Summary
+    desc_long:
+      term: Overview
+  taxonomies:
+    authors:
+      term: Author
+      list_tag: ul
+      delimiter: ", "
+      rel: author
+      row_partial: haz/helpers/fn/fn_list_row_link_000
+    categories:
+      term: Categories
+      list_tag: ul
+      delimiter: ", "
+      row_partial: haz/helpers/fn/fn_list_row_link_000
+    tags:
+      term: Tags
+      list_tag: ul
+      delimiter: ", "
+      rel: tag
+      row_partial: haz/helpers/fn/fn_list_row_link_000
+  images:
+    config:
+      variant_sep: "_"
+      # end_desktop / measure (CSS-shaped). Nw spine uses content_width_px.
+      content_width: "45rem"
+      rem_px: 16
+      content_width_px: 775
+      # Inner pad fudge (one side, rem) — usable band = band_max − 2×inset.
+      content_inset: 1
+      # Mobile-first: where tablet / desktop bands begin (× content_width → MQ rem).
+      breakpoints:
+        min_tablet: 0.5
+        min_desktop: 0.8
+    # Variant Nw are derived in haz_img from min_* × usable measure (not listed here).
+    # Ladder: xs=½ mobile max, sm=mobile max, md=tablet max, lg=desktop max, xl/xxl=1.5/2×lg.

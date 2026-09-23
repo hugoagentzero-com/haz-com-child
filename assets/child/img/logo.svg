@@ -1,0 +1,8 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Slightly smaller circle with border -->
+  <circle cx="40" cy="40" r="30" stroke="#000" stroke-width="4" fill="none"/>
+  <!-- Letters MP centered -->
+  <text x="50%" y="50%" dy=".35em" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="bold" fill="#000">
+    MP
+  </text>
+</svg>

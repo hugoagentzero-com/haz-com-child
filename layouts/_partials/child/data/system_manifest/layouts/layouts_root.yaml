@@ -1,0 +1,26 @@
+layouts_root:
+  layouts|baseof:
+    enabled: true
+    props: {}
+    children:
+      enabled_false:
+        enabled: false
+        child: baseoff_false
+        type: atoms
+        inst: TODO
+      html_open:
+        enabled: true
+        level: atoms
+        inst: html_open
+      head:
+        enabled: true
+        level: organisms
+        inst: head
+      block_main_pre:
+        enabled: true
+        level: multipliers
+        inst: block_main_pre
+      block_main_post:
+        enabled: true
+        level: multipliers
+        inst: block_main_post

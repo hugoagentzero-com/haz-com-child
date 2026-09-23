@@ -1,0 +1,16 @@
+# Public shortcode keys and their resolution direction.
+registry:
+  page:
+    enabled: true
+    direction: key_route
+    key_profile: page_000
+
+  blog:
+    enabled: true
+    direction: route_key
+    key_profile: blog_000
+
+  _parked_example:
+    enabled: false
+    direction: route_key
+    key_profile: parked_example_000

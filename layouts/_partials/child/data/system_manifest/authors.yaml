@@ -1,0 +1,9 @@
+authors:
+  author_0001:
+    name: Jane Doe
+    slug: jane-doe
+    bio: Jane writes about static sites, taxonomy edge cases, and why Hugo dates are never what they seem.
+  author_0002:
+    name: Alex Kim
+    slug: alex-kim
+    bio: Alex focuses on content architecture, manifest-driven layouts, and demo posts that exist mainly to prove a point.

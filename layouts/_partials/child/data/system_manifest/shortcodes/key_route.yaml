@@ -1,0 +1,20 @@
+# Horizontal resolution:
+# shortcode profile → current route → layouts entry.
+# Each shortcode profile keeps all of its route rules together.
+# Missing route = continue to default; present enabled:false = hard stop.
+key_route:
+  keys:
+    page_000:
+      enabled: true
+      rules:
+        - match: _about
+          enabled: true
+          key_layouts_entry: page_about_000
+
+        - match: _page-test2
+          enabled: true
+          key_layouts_entry: page_test_000
+
+      default:
+        enabled: true
+        key_layouts_entry: page_default_000

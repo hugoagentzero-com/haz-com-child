@@ -1,0 +1,10 @@
+# PARKED — enqueue MVP (not loaded). Reinstate via enqueue.yaml + fn_get_sys_manifest + layouts.
+# TODO revisit: deps, SVG registry vs socials, per-SVG preloads, module extract.
+_enqueue:
+  fa-free:
+    enabled: true
+    base_path: /third_party/fontawesome-free
+    location: head
+    collection:
+      - path: css/all.min.css
+        kind: style

@@ -1,0 +1,20 @@
+{{- /* Child-maintained: apply manifest_filter.rules (merge patches) to unmarshaled sysManifest. "context" reserved for future when logic. */ -}}
+{{- $manifest := index . "manifest" | default dict -}}
+{{- $context := index . "context" | default dict -}}
+{{- /* --------------------------- */ -}}
+{{- /* ADD CONTEXT BASES RULES HERE */ -}}
+{{- if eq (index $manifest "hugo" "page" "RelPermalink") "/about/" -}}`
+  {{- $patch := dict
+    "settings" (dict
+      "head_tags" (dict
+        "document" (dict
+          "title" (dict
+            "title_suffix" "+Hugo Agent Zero"
+          )
+        )
+      )
+    )
+  -}}
+  {{- $manifest = merge $manifest $patch -}}
+{{- end -}}
+{{- return $manifest -}}
