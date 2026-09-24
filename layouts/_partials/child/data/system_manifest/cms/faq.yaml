@@ -6,13 +6,17 @@ faq:
           collection:
             - key: what_is
               enabled: true
-              summary: What is Hugo Agent Zero?
-              details: "<p>HAZ is an Atomic, layouts-driven Hugo kit — compose pages from reusable atoms and molecules instead of one-off templates.</p>"
+              summary: Lorem ipsum dolor sit amet?
+              details: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
             - key: details_native
               enabled: true
-              summary: Why native details and summary?
-              details: "<p>No JavaScript for open/close. Accessible disclosure that works with Pico and plain HTML. Accordion exclusivity can wait.</p>"
+              summary: Ut enim ad minim veniam?
+              details: "<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"
               open: true
+            - key: more_lorem
+              enabled: true
+              summary: Duis aute irure dolor in reprehenderit?
+              details: "<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>"
             - key: parked_demo
               enabled: false
               summary: Parked FAQ row (enabled false)?
