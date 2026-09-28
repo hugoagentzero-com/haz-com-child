@@ -9,35 +9,39 @@
    Child can also host a downloaded theme under this folder.
 */
 
-/* #57 — mobile-first: tighter outside gutters (95%); 90% from 40rem up.
-   This is screen-edge → measure column, not padding inside main/aside. */
+/* #70 — column + fluid type. Stamp px MQs — rem MQs drift with fluid type. */
 :root,
 :host {
-  --haz_measure: min(45rem, 95%);
   /* One chrome pink for text + SVG fill (Pico’s --pico-primary, not --pico-primary-background). */
   --haz_chrome: var(--pico-primary);
 
   /*
-    #51 — measure as constant → fluid root type.
-    sweet/type both 65ch at rest → delta = 1.
-    min: 100% (browser base). val: 0.9rem + --haz_font_vw (no * delta).
-    max: 112.5% * delta. Lower --haz_font_vw → ~16px floor at a wider viewport.
-    Exercise delta: live-edit --haz_measure_type (e.g. 80ch / 40ch).
-    ch is the locked spine — do not silently revert to rem without Mark.
+    Column is the input (px). Font is the output for OUR face.
+    A: --haz_measure_px — ultrawide stops here.
+    Gutter mobile-first: 95% in :root; 90% from min_desktop (992).
+    Two fluid-type clamps (calculator). Headings = rem of root.
+    Band 1: 1rem @ ~320 → 1.125rem @ ~992.
+    Band 2 @993: 1.125rem → 1.3rem @ ~1183 (A).
+    Dropped #51 sweet/type/delta ch debt.
   */
-  --haz_measure_sweet: 65ch;
-  --haz_measure_type: 65ch;
-  --haz_measure_delta: calc(var(--haz_measure_type) / var(--haz_measure_sweet));
-  --haz_font_vw: 0.33vw;
-  --haz_font_val: calc(0.9rem + var(--haz_font_vw));
-  --haz_font_max: calc(112.5% * var(--haz_measure_delta));
-  --pico-font-size: clamp(100%, var(--haz_font_val), var(--haz_font_max));
+  --haz_measure_px: 1065px;
+  --haz_measure: min(var(--haz_measure_px), 95%);
+  --pico-font-size: 1rem;
+  --pico-font-size: clamp(1rem, 0.9405rem + 0.2976vw, 1.125rem);
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 992px) {
   :root,
   :host {
-    --haz_measure: min(45rem, 90%);
+    --haz_measure: min(var(--haz_measure_px), 90%);
+  }
+}
+
+@media (min-width: 993px) {
+  :root,
+  :host {
+    --pico-font-size: 1.125rem;
+    --pico-font-size: clamp(1.125rem, 0.2104rem + 1.4737vw, 1.3rem);
   }
 }
 
