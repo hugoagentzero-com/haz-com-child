@@ -21,7 +21,7 @@
     Gutter mobile-first: 95% in :root; 90% from min_desktop (992).
     Two fluid-type clamps (calculator). Headings = rem of root.
     Band 1: 1rem @ ~320 → 1.125rem @ ~992.
-    Band 2 @993: 1.125rem → 1.3rem @ ~1183 (A).
+    Band 2 @992: 1.125rem → 1.3rem @ ~1183 (A).
     Dropped #51 sweet/type/delta ch debt.
   */
   --haz_measure_px: 1065px;
@@ -34,12 +34,6 @@
   :root,
   :host {
     --haz_measure: min(var(--haz_measure_px), 90%);
-  }
-}
-
-@media (min-width: 993px) {
-  :root,
-  :host {
     --pico-font-size: 1.125rem;
     --pico-font-size: clamp(1.125rem, 0.2104rem + 1.4737vw, 1.3rem);
   }
