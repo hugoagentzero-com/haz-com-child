@@ -1382,12 +1382,15 @@ atoms:
   _framework_css_simple_css:
     enabled: true
     part:
-      file: haz/atomic/atoms/framework_css.html
+      file: haz/atomic/atoms/enqueue_000.html
     props:
-      css:
-        1_main: css/simple/simple.min.css
-        2_extended: css/simple/simple-extended.css
-        3_overrides: child/css/simple/simple-override.css
+      collection:
+        1_main:
+          src: css/simple/simple.min.css
+        2_extended:
+          src: css/simple/simple-extended.css
+        3_overrides:
+          src: child/css/simple/simple-override.css
     children:
       enabled_false:
         enabled: false
@@ -1397,14 +1400,18 @@ atoms:
   framework_css_pico_css:
     enabled: true
     part:
-      file: haz/atomic/atoms/framework_css.html
+      file: haz/atomic/atoms/enqueue_000.html
     props:
-      css:
-        1_main: css/pico/pico.pink.min.css
+      collection:
+        1_main:
+          src: css/pico/pico.pink.min.css
         # vanilla still on disk: css/pico/pico.min.css — swap 1_main to demo theme switch
-        2_haz: css/haz/haz.css
-        3_extended: css/pico/pico-x-agent-zero.css
-        4_overrides: child/css/pico/pico-override.css
+        2_haz:
+          src: css/haz/haz.css
+        3_extended:
+          src: css/pico/pico-x-agent-zero.css
+        4_overrides:
+          src: child/css/pico/pico-override.css
     children:
       enabled_false:
         enabled: false
@@ -1414,9 +1421,8 @@ atoms:
   _enqueue_head:
     enabled: false
     part:
-      file: haz/atomic/atoms/_enqueue_000.html
-    props:
-      location: head
+      file: haz/atomic/atoms/enqueue_000.html
+    props: {}
     children:
       enabled_false:
         enabled: false
@@ -1426,9 +1432,9 @@ atoms:
   _enqueue_footer:
     enabled: false
     part:
-      file: haz/atomic/atoms/_enqueue_000.html
+      file: haz/atomic/atoms/enqueue_000.html
     props:
-      location: footer
+      in_footer: true
     children:
       enabled_false:
         enabled: false
