@@ -19,7 +19,7 @@ organisms:
       enabled: true
       part:
         folder: haz/atomic/organisms/cols/cols_two_tag_wrapper_000
-        preset: preset_header
+        preset: preset_site_header
       children:
         enabled_false:
           enabled: false
@@ -85,6 +85,7 @@ organisms:
         - blog_meta
         - blog_content
         - blog_pages
+        - blog_paging
       children:
         enabled_false:
           enabled: false
@@ -111,6 +112,11 @@ organisms:
           level: atoms
           group: blog
           inst: blog_pages_list_000
+        blog_paging:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: paging_nav_000
   search:
     search_pagefind_modal_000:
       enabled: true

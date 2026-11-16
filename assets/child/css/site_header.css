@@ -1,0 +1,233 @@
+/* Child: layout for this layouts site header (#95 add-back).
+   Tied to the shipped DOM (two rows, brand / __col_other / nav panel).
+   Rebuild the header in layouts → drop or replace this file; keep out of core.
+   Site-wide tokens (--haz_site_primary, Simple knobs) live in theme.css. */
+
+body > header {
+  /* Simple: padding 0 .5rem 2rem + border-bottom, written for a header at the top of the page.
+     Announcement sits above this bar, and the brand row already pads itself (padding-block).
+     Resting bar: no extra bottom pad, no hairline. Open nav still paints its own rule below. */
+  padding-bottom: 0;
+  border-bottom: 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+}
+
+html[data-scrolled="true"] body > header {
+  padding-block: var(--size-2);
+}
+
+.haz_site_header > div {
+  width: 100%;
+  max-width: var(--haz_measure, min(var(--size-lg), 95%));
+  margin-inline: auto;
+}
+
+.haz_site_header > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: var(--size-3);
+}
+
+html[data-scrolled="true"] .haz_site_header > div:first-child {
+  padding-block: 0;
+}
+
+/* Brand — left side of top row */
+.haz_site_header__brand {
+  display: flex;
+  align-items: center;
+  max-width: 53vw;
+  min-width: 0;
+  color: var(--haz_site_primary);
+}
+
+.haz_site_header__brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-2);
+  text-decoration: none;
+  line-height: 0;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.haz_site_header__brand svg {
+  fill: var(--haz_site_primary);
+  max-width: 100%;
+}
+
+.haz_site_header .haz_svg {
+  display: block;
+  height: var(--size-3);
+  width: auto;
+}
+
+.haz_site_header .haz_brand__name,
+.haz_site_header .haz_brand__logo {
+  display: flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.haz_site_header .haz_brand__logo .haz_svg {
+  height: var(--size-7);
+}
+
+.haz_site_header .haz_brand__name .haz_svg {
+  height: var(--size-6);
+}
+
+html:not([data-scrolled="true"]) .haz_site_header .haz_brand__logo {
+  display: none;
+}
+
+html[data-scrolled="true"] .haz_site_header .haz_brand__name {
+  display: none;
+}
+
+/* Controls — right side of top row */
+.haz_site_header__col_other {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.haz_site_header__col_other .haz_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-1);
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  padding: var(--size-1) var(--size-1);
+  background: none;
+  color: var(--haz_site_primary);
+}
+
+.haz_site_header__col_other .haz_btn:hover,
+.haz_site_header__col_other .haz_btn:focus-visible,
+.haz_site_header__col_other .haz_btn:enabled:hover {
+  background: none;
+  border: none;
+  color: var(--haz_site_primary_hover);
+  outline: none;
+}
+
+.haz_site_header__col_other .haz_btn svg {
+  width: var(--size-5);
+  height: var(--size-5);
+  fill: var(--haz_site_primary);
+}
+
+.haz_site_header__col_other .haz_btn:hover svg,
+.haz_site_header__col_other .haz_btn:focus-visible svg {
+  fill: var(--haz_site_primary_hover);
+}
+
+@media (min-width: 768px) {
+  .haz_site_header__col_other {
+    gap: var(--size-1);
+  }
+
+  .haz_site_header__col_other .haz_btn {
+    padding: var(--size-1);
+  }
+}
+
+#haz_btn_nav_main[aria-expanded="false"] svg.haz_svg__close_x,
+#haz_btn_search[aria-expanded="false"] svg.haz_svg__close_x {
+  display: none;
+}
+
+#haz_btn_nav_main[aria-expanded="true"] svg.haz_svg__hamburger,
+#haz_btn_search[aria-expanded="true"] svg.haz_svg__search {
+  display: none;
+}
+
+html[data-theme="dark"] #haz_btn_color_scheme svg.haz_svg__sun {
+  display: none;
+}
+
+html[data-theme="light"] #haz_btn_color_scheme svg.haz_svg__moon {
+  display: none;
+}
+
+/* Nav panel — closed by default; html.haz_state__nav_open opens it.
+   max-height + opacity ease (works with or without __panel_inner wrap).
+   Stack: nav → socials → tagline, centered. */
+#haz_nav_main_panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  padding-block: 0;
+  gap: 0;
+  transition:
+    max-height var(--haz_nav_panel_duration) var(--haz_ease),
+    opacity var(--haz_nav_panel_duration_fade) var(--haz_ease),
+    padding-block var(--haz_nav_panel_duration_fade) var(--haz_ease),
+    gap var(--haz_nav_panel_duration_fade) var(--haz_ease);
+}
+
+html.haz_state__nav_open #haz_nav_main_panel {
+  max-height: var(--haz_nav_panel_max_height);
+  opacity: 1;
+  padding-block: var(--size-3);
+  gap: var(--size-3);
+}
+
+/* Optional inner from core preset — full width so tagline/socials center. */
+.haz_site_header__panel_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-3);
+  width: 100%;
+  min-height: 0;
+}
+
+html.haz_state__nav_open body > header {
+  padding-bottom: var(--size-5);
+  margin-bottom: var(--size-5);
+  border-bottom: var(--border-width, 1px) solid var(--haz_site_primary);
+}
+
+#haz_nav_main {
+  margin: 0;
+}
+
+#haz_nav_main .haz_nav_main__menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#haz_nav_main .haz_nav_main__item {
+  margin: 0;
+  padding: 0;
+}
+
+/* Panel: kill default socials block margin; row layout lives in socials.css. */
+#haz_nav_main_panel .haz_socials {
+  margin: 0;
+}
+
+#haz_nav_main_panel .haz_tagline {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  color: var(--haz_site_primary);
+  font-size: var(--font-size-3);
+  line-height: var(--font-lineheight-2, 1.25);
+}

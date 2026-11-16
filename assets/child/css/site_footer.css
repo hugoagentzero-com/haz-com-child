@@ -1,0 +1,137 @@
+/* Child: layout for this layouts site footer (#95 add-back).
+   Layout/design aligned with HAZ.com (pico-override footer), OP tokens here.
+   simple-x only zeroes Simple’s footer margin-top; other strip resets live here. */
+
+body > footer.haz_footer_site {
+  grid-column: 1 / -1;
+  text-align: start;
+  font-size: inherit;
+  color: inherit;
+  padding-block: var(--size-3);
+  padding-inline: 0;
+  background-color: var(--accent-bg);
+}
+
+.haz_footer_site > div {
+  width: 100%;
+  max-width: var(--haz_measure, min(var(--size-lg), 95%));
+  margin-inline: auto;
+}
+
+/* Top bar — mobile-first: stacked + centered; wide = HAZ.com row-reverse. */
+.haz_footer_site > div:first-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-3);
+  padding-block: var(--size-3);
+  text-align: center;
+}
+
+.haz_footer_site__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-2);
+  min-width: 0;
+  max-width: 100%;
+  color: var(--haz_site_primary);
+}
+
+/* Wordmark — same fill fix as site_header brand (black fill vanishes on dark). */
+.haz_footer_site__brand svg,
+.haz_footer_site__col_other svg {
+  fill: var(--haz_site_primary);
+}
+
+.haz_footer_site__brand .haz_svg {
+  display: block;
+  height: var(--size-5);
+  width: auto;
+  max-width: 100%;
+}
+
+.haz_footer_site__brand .haz_tagline {
+  margin: 0;
+  text-align: center;
+  color: var(--haz_site_primary);
+  font-size: var(--font-size-2);
+  line-height: var(--font-lineheight-2, 1.25);
+}
+
+.haz_footer_site__col_other {
+  min-width: 0;
+}
+
+.haz_footer_site > div:nth-child(2) {
+  padding-bottom: var(--size-3);
+  text-align: center;
+}
+
+.haz_copyright_000 {
+  margin: 0;
+  font-size: var(--font-size-1);
+  opacity: 0.85;
+}
+
+/* Tertiary nav — horizontal utility row; kill UA list chrome Simple leaves on. */
+.haz_footer_site__col_other .haz_nav_tertiary__menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.haz_footer_site__col_other .haz_nav_tertiary__item {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.haz_footer_site__col_other .haz_nav_tertiary__link {
+  font-size: var(--font-size-2);
+  line-height: var(--font-lineheight-2, 1.25);
+  color: var(--haz_site_primary);
+  text-decoration: none;
+}
+
+.haz_footer_site__col_other .haz_nav_tertiary__link:hover,
+.haz_footer_site__col_other .haz_nav_tertiary__link:focus-visible {
+  color: var(--haz_site_primary_hover);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+@media (min-width: 768px) {
+  .haz_footer_site > div:first-child {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    text-align: start;
+  }
+
+  .haz_footer_site__brand {
+    align-items: flex-end;
+  }
+
+  .haz_footer_site__brand .haz_svg {
+    height: var(--size-6);
+  }
+
+  .haz_footer_site__brand .haz_tagline {
+    text-align: end;
+  }
+
+  .haz_footer_site__col_other .haz_nav_tertiary__menu {
+    justify-content: flex-start;
+  }
+
+  .haz_footer_site > div:nth-child(2) {
+    text-align: start;
+  }
+}

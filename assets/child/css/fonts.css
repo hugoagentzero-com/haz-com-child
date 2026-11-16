@@ -1,0 +1,67 @@
+/* Child font faces + three roles (#95 trial).
+   Customize here — not core. Swap --haz_font_headline / --haz_font_mono later. */
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("{{ "haz/fonts/Atkinson Hyperlegible/Next/AtkinsonHyperlegibleNext-VariableFont_wght.ttf" | relURL }}") format("truetype");
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("{{ "haz/fonts/Atkinson Hyperlegible/Next/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf" | relURL }}") format("truetype");
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("{{ "haz/fonts/Atkinson Hyperlegible/Mono/AtkinsonHyperlegibleMono-VariableFont_wght.ttf" | relURL }}") format("truetype");
+}
+
+@font-face {
+  font-family: "Atkinson Hyperlegible Mono";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("{{ "haz/fonts/Atkinson Hyperlegible/Mono/AtkinsonHyperlegibleMono-Italic-VariableFont_wght.ttf" | relURL }}") format("truetype");
+}
+
+:root {
+  --haz_font_body: "Atkinson Hyperlegible Next", system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif;
+  --haz_font_headline: var(--haz_font_body);
+  --haz_font_mono: "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+    Consolas, monospace;
+
+  /* Simple.css hooks */
+  --sans-font: var(--haz_font_body);
+  --mono-font: var(--haz_font_mono);
+}
+
+html,
+body {
+  font-family: var(--haz_font_body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--haz_font_headline);
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--haz_font_mono);
+}

@@ -7,6 +7,10 @@ routes:
       enabled: true
       key_child: single_home_000
       key_body_attrs: single_page
+    - match: blog/page/*
+      enabled: true
+      key_child: blog_index_000
+      key_body_attrs: list_blog
     - match: blog/*
       enabled: true
       key_child: single_blog_000
@@ -129,9 +133,9 @@ routes:
       inst: default_000
     term_000:
       enabled: true
-      level: organisms
-      group: sections
-      inst: default_000
+      level: atoms
+      group: blog
+      inst: blog_index_section_wrapper_000
 
   # key_body_attrs → <body> attrs dict (manifest props.attrs shape; class concat on merge)
   # Page kind (not haz_state__*): layout shape + content kind for styling hooks outside <article>.

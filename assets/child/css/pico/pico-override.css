@@ -9,35 +9,42 @@
    Child can also host a downloaded theme under this folder.
 */
 
-/* #57 — mobile-first: tighter outside gutters (95%); 90% from 40rem up.
-   This is screen-edge → measure column, not padding inside main/aside. */
+/* #70 — column + fluid type. Stamp px MQs — rem MQs drift with fluid type. */
 :root,
 :host {
-  --haz_measure: min(45rem, 95%);
   /* One chrome pink for text + SVG fill (Pico’s --pico-primary, not --pico-primary-background). */
   --haz_chrome: var(--pico-primary);
 
   /*
-    #51 — measure as constant → fluid root type.
-    sweet/type both 65ch at rest → delta = 1.
-    min: 100% (browser base). val: 0.9rem + --haz_font_vw (no * delta).
-    max: 112.5% * delta. Lower --haz_font_vw → ~16px floor at a wider viewport.
-    Exercise delta: live-edit --haz_measure_type (e.g. 80ch / 40ch).
-    ch is the locked spine — do not silently revert to rem without Mark.
+    Column is the input (px). Font is the output for OUR face.
+    A: --haz_measure_px — ultrawide stops here. Same as haz_img content_width_px.
+    Gutter mobile-first: 95% in :root; 90% from min_desktop (992).
+
+    Two font bands — tune each max with a named var:
+    --haz_font_max_tablet  = max below min_desktop (also desktop band min).
+    --haz_font_max_desktop = max from min_desktop; size at A (~1183 with 90%).
+    Below 992: C 100% → tablet max (~18). 0.35vw.
+    From 992: tablet max → desktop max (~24). 0.81vw so max lands at A.
+    65 is a desktop target; phone lines go short. Nudge --haz_font_max_desktop.
   */
-  --haz_measure_sweet: 65ch;
-  --haz_measure_type: 65ch;
-  --haz_measure_delta: calc(var(--haz_measure_type) / var(--haz_measure_sweet));
-  --haz_font_vw: 0.33vw;
+  --haz_measure_px: 1065px;
+  --haz_measure: min(var(--haz_measure_px), 95%);
+  --haz_font_max_tablet: 112.5%;
+  --haz_font_max_desktop: 150%;
+  --haz_font_min: 100%;
+  --haz_font_max: var(--haz_font_max_tablet);
+  --haz_font_vw: 0.35vw;
   --haz_font_val: calc(0.9rem + var(--haz_font_vw));
-  --haz_font_max: calc(112.5% * var(--haz_measure_delta));
-  --pico-font-size: clamp(100%, var(--haz_font_val), var(--haz_font_max));
+  --pico-font-size: clamp(var(--haz_font_min), var(--haz_font_val), var(--haz_font_max));
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 992px) {
   :root,
   :host {
-    --haz_measure: min(45rem, 90%);
+    --haz_measure: min(var(--haz_measure_px), 90%);
+    --haz_font_min: var(--haz_font_max_tablet);
+    --haz_font_max: var(--haz_font_max_desktop);
+    --haz_font_vw: 0.81vw;
   }
 }
 
@@ -232,7 +239,7 @@ p.haz_tagline {
   min-width: 0;
 }
 
-@media (max-width: 40rem) {
+@media (max-width: 767px) {
   .haz_footer_site > div:first-child {
     flex-direction: column;
     align-items: center;
