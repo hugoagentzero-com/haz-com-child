@@ -3,6 +3,31 @@ settings:
     name: Hugo Agent Zero
     tagline: The is our FPO Hugo Agent Zero Tag Line
     copyright: Hugo Agent Zero # legal holder; may differ from site.name
+  # Traditional mins (Open Props --sm / --md / --size-lg).
+  # m = tablet min. t = desktop min. d = column, not a third img/grid hop.
+  # Readers prefer this. The old max-of-band stamp is parked at haz_img.config._max_px.
+  breakpoints:
+    m: 480
+    t: 768
+    d: 1024
+  paging:
+    posts_per_page: 10
+    pager_pages: 10     # <ol> slots; held constant. 5+ recommended (first + last + current + ellipses), not enforced.
+    pager_pages_swipe: true
+  # Site surface: listed shortcodes (and haz_do verbs) may run. Intentional —
+  # _-park whitelist (or shortcodes) → all shortcodes off. _-park one entry
+  # (e.g. _haz_img, _tabs) → that name/verb off.
+  shortcodes:
+    whitelist:
+      - haz_img
+      - haz_tbd
+      - haz_do:
+        - spacer
+        - callout
+        - list
+        - tabs
+        - tab
+        - grid
   dates:
     default: publishdate
     publishdate:
@@ -31,33 +56,637 @@ settings:
   taxonomies:
     authors:
       term: Author
+      singular: Author
       list_tag: ul
       delimiter: ", "
       rel: author
       row_partial: haz/helpers/fn/fn_list_row_link_000
     categories:
       term: Categories
+      singular: Category
       list_tag: ul
       delimiter: ", "
       row_partial: haz/helpers/fn/fn_list_row_link_000
     tags:
       term: Tags
+      singular: Tag
       list_tag: ul
       delimiter: ", "
       rel: tag
       row_partial: haz/helpers/fn/fn_list_row_link_000
-  images:
+  haz_img:
     config:
       variant_sep: "_"
-      # end_desktop / measure (CSS-shaped). Nw spine uses content_width_px.
-      content_width: "45rem"
-      rem_px: 16
-      content_width_px: 775
-      # Inner pad fudge (one side, rem) — usable band = band_max − 2×inset.
+      # Most pictures wait. Set false on the shortcode for a hero: lazy=false.
+      lazy_default: true
+      # When name= is omitted or does not match a preset, try this key next
+      # (same resolve path as a typed name). Ship: as_is.
+      # When name= is omitted or does not match a preset, try this key next
+      # (same resolve path as a typed name). Ship: as_is.
+      preset_default: as_is
+      # Fail knobs — each is { prod: bool } for now (other env keys later).
+      # src_404: src= is not a page resource. true = still emit the tag
+      # (broken image). false = HTML comment only. Ship prod: false.
+      src_404:
+        prod: false
+      # name_not_in_presets: name + preset_default missed. Always an HTML
+      # comment; true = also emit Inner as-is. Ship prod: true.
+      name_not_in_presets:
+        prod: true
+      # Fill missing rwd_widths stubs via Hugo Resize (width-only; aspect kept).
+      # Page-bundle stubs still win as Mom wrote them. Shortcode process= overrides.
+      # true = Mom drops one master; Hugo fills the ladder. false = file-only.
+      process: true
+      # Process format allowlist — PARKED. Nothing reads _formats_allow.
+      # Live key is formats_allow; omit/empty → core baked HAZ opinion
+      # (jpeg|webp|avif|png; jpg→jpeg). Un-park (rename) to override narrower
+      # or wider. List below = all Hugo Resize tokens we care about as FYI.
+      # Not on the live list / empty format → inherit. Not Mom-facing.
+      _formats_allow:
+        - jpeg
+        - webp
+        - avif
+        - png
+        - bmp
+        - gif
+        - tiff
+
+      # Parked. Size to the band; ~1rem hole pad is accepted overshoot.
       content_inset: 1
-      # Mobile-first: where tablet / desktop bands begin (× content_width → MQ rem).
-      breakpoints:
-        min_tablet: 0.5
-        min_desktop: 0.8
-    # Variant Nw are derived in haz_img from min_* × usable measure (not listed here).
-    # Ladder: xs=½ mobile max, sm=mobile max, md=tablet max, lg=desktop max, xl/xxl=1.5/2×lg.
+      # Parked. Old max-of-band stamp. Nothing reads this. Cleanup later.
+      # m/t were the band ceilings (breakpoints.m|t - 1). d = column ceiling.
+      _max_px:
+        m: 479
+        t: 767
+        d: 1024
+      # File menu for srcset + process. Stamp; do not derive. Not the HTML sizes= attr.
+      # Each key (xs…xxl) is a ladder rung. sm|md|lg match the old band ceilings;
+      # xs/xl/xxl are extra rungs (smaller / DPR). HAZ custom defaults; presets may
+      # layer overrides on top (only fields they set). Mom never edits this.
+      #   px     — output width Hugo Resize targets (and the Nw in srcset).
+      #   format — process output when a stub is missing. Must be in live
+      #            formats_allow (or core baked default when that key is
+      #            omit/empty / parked as _formats_allow). Else → inherit.
+      #            Stubs still win; src stays the master.
+      #   q      — quality for process-built rungs only; stubs ignore q.
+      #            Keys match Hugo format names (jpeg, webp, avif, …). Passed on
+      #            the Resize spec (e.g. "1024x q75" or "1024x webp q75").
+      #            1–100 = HAZ wins; -1 or omit = Hugo site default for that format.
+      #   enabled — omit/true = include rung; false = no process, no srcset for it.
+      # Bare int still OK (lg: 1024 → px only, format inherit, q.* -1, enabled true).
+      # Dogfood: small rungs inherit (JPEG from JPEG master); lg+ → webp.
+      rwd_widths:
+        xs:
+          px: 240
+          format: inherit
+          q:
+            jpeg: 70
+        sm:
+          px: 479
+          format: inherit
+          q:
+            jpeg: 75
+        md:
+          px: 767
+          format: inherit
+          q:
+            jpeg: 75
+        lg:
+          px: 1024
+          format: webp
+          q:
+            jpeg: 75
+            webp: 75
+        xl:
+          px: 1536
+          format: webp
+          q:
+            jpeg: 75
+            webp: 75
+        xxl:
+          px: 2048
+          format: webp
+          q:
+            jpeg: 75
+            webp: 75
+      # Swappable helpers (child may point at another partial).
+      helpers:
+        rwd_widths_fn: haz/helpers/fn/fn_haz_img_rwd_widths.html
+        rwd_resolve_fn: haz/helpers/fn/fn_haz_img_rwd_resolve.html
+    # Mom types the key (name="full_widescreen"). Engine stays here.
+    # _term is parked: a human label for that key. Nothing reads it.
+    # Layout x crop bank. Width stable on m unless the key is an alt hop.
+    # Crops: sqr 1/1, portrait 3/4, landscape 4/3, widescreen 16/9.
+    # Designer picks 3-5 keys for Mom. She may never see the whole bank.
+    # enabled — omit/true = on; only false turns this preset off (intentional).
+    # enabled_false — when off, resolve that preset key as if Mom called it.
+    # Optional presets.*.rwd_widths — that preset’s layer on HAZ defaults
+    # (only fields set: format / q.* / px / enabled). Example: bump headshot q,
+    # or set lg/xl/xxl enabled: false when the layout stays small.
+    presets:
+      as_is:
+        _term: As is
+        rwd:
+          m:
+            w: 100
+      # Dogfood: soft-off redirects to as_is (Mom can still type this name).
+      demo_off_redirect:
+        _term: Demo Off Redirect
+        enabled: false
+        enabled_false: as_is
+        fit: cover
+        rwd:
+          m:
+            w: 100
+            ratio: "16/9"
+      # Dogfood: soft-off with no redirect → same as missing preset (no enrich).
+      demo_off_dead:
+        _term: Demo Off Dead
+        enabled: false
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            ratio: "1/1"
+      full_sqr:
+        _term: Full Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 100
+            ratio: "1/1"
+      full_portrait:
+        _term: Full Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 100
+            ratio: "3/4"
+      full_landscape:
+        _term: Full Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 100
+            ratio: "4/3"
+      full_widescreen:
+        _term: Full Widescreen
+        fit: cover
+        # Dogfood: lg webp at q90 so _hu_ hash/bytes differ from config webp 75.
+        rwd_widths:
+          lg:
+            q:
+              jpeg: 90
+              webp: 90
+        rwd:
+          m:
+            w: 100
+            ratio: "16/9"
+      half_left_sqr:
+        _term: Half Left Sqr
+        # Dogfood: contain (not cover) so framed crop differs on eyes-on.
+        fit: contain
+        rwd:
+          m:
+            w: 50
+            align: left
+            ratio: "1/1"
+      half_left_portrait:
+        _term: Half Left Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: left
+            ratio: "3/4"
+      half_left_landscape:
+        _term: Half Left Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: left
+            ratio: "4/3"
+      half_left_widescreen:
+        _term: Half Left Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: left
+            ratio: "16/9"
+      half_center_sqr:
+        _term: Half Center Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: center
+            ratio: "1/1"
+      half_center_portrait:
+        _term: Half Center Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: center
+            ratio: "3/4"
+      half_center_landscape:
+        _term: Half Center Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: center
+            ratio: "4/3"
+      half_center_widescreen:
+        _term: Half Center Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: center
+            ratio: "16/9"
+      half_right_sqr:
+        _term: Half Right Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: right
+            ratio: "1/1"
+      half_right_portrait:
+        _term: Half Right Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: right
+            ratio: "3/4"
+      half_right_landscape:
+        _term: Half Right Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: right
+            ratio: "4/3"
+      half_right_widescreen:
+        _term: Half Right Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: right
+            ratio: "16/9"
+      third_left_sqr:
+        _term: Third Left Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: left
+            ratio: "1/1"
+      third_left_portrait:
+        _term: Third Left Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: left
+            ratio: "3/4"
+      third_left_landscape:
+        _term: Third Left Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: left
+            ratio: "4/3"
+      third_left_widescreen:
+        _term: Third Left Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: left
+            ratio: "16/9"
+      third_center_sqr:
+        _term: Third Center Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: center
+            ratio: "1/1"
+      third_center_portrait:
+        _term: Third Center Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: center
+            ratio: "3/4"
+      third_center_landscape:
+        _term: Third Center Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: center
+            ratio: "4/3"
+      third_center_widescreen:
+        _term: Third Center Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: center
+            ratio: "16/9"
+      third_right_sqr:
+        _term: Third Right Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: right
+            ratio: "1/1"
+      third_right_portrait:
+        _term: Third Right Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: right
+            ratio: "3/4"
+      third_right_landscape:
+        _term: Third Right Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: right
+            ratio: "4/3"
+      third_right_widescreen:
+        _term: Third Right Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 33
+            align: right
+            ratio: "16/9"
+      two_thirds_left_sqr:
+        _term: Two Thirds Left Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: left
+            ratio: "1/1"
+      two_thirds_left_portrait:
+        _term: Two Thirds Left Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: left
+            ratio: "3/4"
+      two_thirds_left_landscape:
+        _term: Two Thirds Left Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: left
+            ratio: "4/3"
+      two_thirds_left_widescreen:
+        _term: Two Thirds Left Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: left
+            ratio: "16/9"
+      two_thirds_center_sqr:
+        _term: Two Thirds Center Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: center
+            ratio: "1/1"
+      two_thirds_center_portrait:
+        _term: Two Thirds Center Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: center
+            ratio: "3/4"
+      two_thirds_center_landscape:
+        _term: Two Thirds Center Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: center
+            ratio: "4/3"
+      two_thirds_center_widescreen:
+        _term: Two Thirds Center Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: center
+            ratio: "16/9"
+      two_thirds_right_sqr:
+        _term: Two Thirds Right Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: right
+            ratio: "1/1"
+      two_thirds_right_portrait:
+        _term: Two Thirds Right Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: right
+            ratio: "3/4"
+      two_thirds_right_landscape:
+        _term: Two Thirds Right Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: right
+            ratio: "4/3"
+      two_thirds_right_widescreen:
+        _term: Two Thirds Right Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 67
+            align: right
+            ratio: "16/9"
+      quarter_left_sqr:
+        _term: Quarter Left Sqr
+        fit: cover
+        # Dogfood: small layout — skip large ladder rungs.
+        rwd_widths:
+          lg:
+            enabled: false
+          xl:
+            enabled: false
+          xxl:
+            enabled: false
+        rwd:
+          m:
+            w: 25
+            align: left
+            ratio: "1/1"
+      quarter_left_portrait:
+        _term: Quarter Left Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: left
+            ratio: "3/4"
+      quarter_left_landscape:
+        _term: Quarter Left Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: left
+            ratio: "4/3"
+      quarter_left_widescreen:
+        _term: Quarter Left Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: left
+            ratio: "16/9"
+      quarter_center_sqr:
+        _term: Quarter Center Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: center
+            ratio: "1/1"
+      quarter_center_portrait:
+        _term: Quarter Center Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: center
+            ratio: "3/4"
+      quarter_center_landscape:
+        _term: Quarter Center Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: center
+            ratio: "4/3"
+      quarter_center_widescreen:
+        _term: Quarter Center Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: center
+            ratio: "16/9"
+      quarter_right_sqr:
+        _term: Quarter Right Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: right
+            ratio: "1/1"
+      quarter_right_portrait:
+        _term: Quarter Right Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: right
+            ratio: "3/4"
+      quarter_right_landscape:
+        _term: Quarter Right Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: right
+            ratio: "4/3"
+      quarter_right_widescreen:
+        _term: Quarter Right Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 25
+            align: right
+            ratio: "16/9"
+      three_quarters_center_sqr:
+        _term: Three Quarters Center Sqr
+        fit: cover
+        rwd:
+          m:
+            w: 75
+            align: center
+            ratio: "1/1"
+      three_quarters_center_portrait:
+        _term: Three Quarters Center Portrait
+        fit: cover
+        rwd:
+          m:
+            w: 75
+            align: center
+            ratio: "3/4"
+      three_quarters_center_landscape:
+        _term: Three Quarters Center Landscape
+        fit: cover
+        rwd:
+          m:
+            w: 75
+            align: center
+            ratio: "4/3"
+      three_quarters_center_widescreen:
+        _term: Three Quarters Center Widescreen
+        fit: cover
+        rwd:
+          m:
+            w: 75
+            align: center
+            ratio: "16/9"
+      # Alt: phone full, desk half left. Name says the hop.
+      full_to_half_left:
+        _term: Full To Half Left
+        fit: cover
+        rwd:
+          m:
+            w: 100
+            ratio: "16/9"
+          d:
+            w: 50
+            align: left
+      # Alt: half centered on phone, three-quarters centered from tablet up.
+      three_quarters_from_half:
+        _term: Three Quarters From Half
+        fit: cover
+        rwd:
+          m:
+            w: 50
+            align: center
+            ratio: "4/3"
+          t:
+            w: 75
+    # rwd.m|t|d ↔ settings.breakpoints + rwd_widths.sm|md|lg.px. Helpers swappable (rwd_widths_fn / rwd_resolve_fn).

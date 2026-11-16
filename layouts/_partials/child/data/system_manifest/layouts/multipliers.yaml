@@ -49,7 +49,7 @@ multipliers:
       - favicon
       - meta
       - main
-      - framework_css
+      - enqueue_header
       - framework_js
       - priority_close
     children:
@@ -81,10 +81,10 @@ multipliers:
         enabled: false
         level: atoms
         inst: todo
-      framework_css:
+      enqueue_header:
         enabled: true
-        level: atoms
-        inst: framework_css_pico_css
+        level: multipliers
+        inst: enqueue_header
       framework_js:
         enabled: false
         level: atoms
@@ -93,6 +93,44 @@ multipliers:
         enabled: false
         level: atoms
         inst: todo
+  # CSS enqueue silos only — OP → Simple → haz → haz_img → child (#95).
+  enqueue_header:
+    enabled: true
+    part:
+      file: haz/helpers/multipliers/multiplier.html
+    props:
+      order:
+      - enqueue_open_props
+      - enqueue_simple
+      - enqueue_haz
+      - enqueue_haz_img
+      - enqueue_child
+    children:
+      enabled_false:
+        enabled: false
+        child: enqueue_header_false
+        level: atoms
+        inst: todo
+      enqueue_open_props:
+        enabled: true
+        level: atoms
+        inst: enqueue_open_props
+      enqueue_simple:
+        enabled: true
+        level: atoms
+        inst: enqueue_simple
+      enqueue_haz:
+        enabled: true
+        level: atoms
+        inst: enqueue_haz
+      enqueue_haz_img:
+        enabled: true
+        level: atoms
+        inst: enqueue_haz_img
+      enqueue_child:
+        enabled: true
+        level: atoms
+        inst: enqueue_child
   meta:
     enabled: true
     part:
@@ -269,6 +307,8 @@ multipliers:
       order:
       - toggler
       - modal
+      - embla
+      - grid_more
     children:
       enabled_false:
         enabled: false
@@ -283,6 +323,14 @@ multipliers:
         enabled: true
         level: atoms
         inst: script_modal
+      embla:
+        enabled: true
+        level: atoms
+        inst: script_embla_init_000
+      grid_more:
+        enabled: true
+        level: atoms
+        inst: script_grid_more_000
   search_pagefind_modal_000_content:
     enabled: true
     part:

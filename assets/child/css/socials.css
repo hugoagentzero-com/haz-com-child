@@ -1,0 +1,64 @@
+/* Child: social icon row — FA Free SVGs via CSS mask + data-haz_icon (no webfonts).
+   Used in site header panel and pre_footer; keep out of framework chrome. */
+
+.haz_socials {
+  display: block;
+  width: 100%;
+  margin-block: var(--size-3);
+}
+
+/* HAZ.com: space-between across the measure (wider air than a fixed gap). */
+.haz_socials__menu {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-2);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.haz_socials__item {
+  margin: 0;
+  padding: 0;
+}
+
+.haz_socials__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-6);
+  height: var(--size-6);
+  text-decoration: none;
+  color: var(--haz_site_primary);
+  background: none;
+  border: none;
+}
+
+.haz_socials__link[data-haz_icon] {
+  background-color: var(--haz_site_primary);
+  -webkit-mask-image: var(--haz_icon_url);
+  mask-image: var(--haz_icon_url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.haz_socials__link[data-haz_icon]:hover,
+.haz_socials__link[data-haz_icon]:focus-visible {
+  background-color: var(--haz_site_primary_hover);
+}
+
+.haz_socials__link[data-haz_icon="facebook"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/facebook.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="x"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/x-twitter.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="tiktok"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/tiktok.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="instagram"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/instagram.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="rss"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/solid/rss.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="linkedin"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/brands/linkedin.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="mail"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/solid/envelope.svg" | relURL }}"); }
+.haz_socials__link[data-haz_icon="phone"] { --haz_icon_url: url("{{ "third_party/fontawesome-free/svgs/solid/phone.svg" | relURL }}"); }

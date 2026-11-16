@@ -1,0 +1,136 @@
+/* Child: site skin — Simple theme knobs fed by Open Props + HAZ site primary.
+   Site-wide tokens live here (not in layouts chrome files like site_header.css).
+   Primary ≈ Pico fuchsia via OP; --pink-7 closest to #c1208b (Props Color Finder). */
+
+:root {
+  --haz_site_primary: var(--pink-7);
+  --haz_site_primary_hover: var(--pink-8);
+  /* haz_do titles. Callout and list both read this. */
+  --haz_do_title_weight: 700;
+  /* List strokes. Recolor here. The kit rules only read these tokens.
+     Box: transparent removes the outside stroke and keeps the width. */
+  --haz_do_list_border: var(--haz_site_primary);
+  --haz_do_list_box_border: var(--border);
+  /* Active tab, its panel, and an open details. Light uses the grey surface. */
+  --haz_do_tab_fill: var(--accent-bg);
+  /* Callout type colors. Recolor here. The type rules only read these.
+     Kit defaults are in haz.css :root; this file wins. Types may share a color. */
+  --haz_callout_calendar: var(--text-light, var(--border));
+  --haz_callout_cancel: var(--red-7, var(--code));
+  --haz_callout_caution: var(--yellow-7, var(--marked));
+  --haz_callout_code: var(--code);
+  --haz_callout_deadline: var(--text-light, var(--border));
+  --haz_callout_happy: var(--yellow-7, var(--marked));
+  --haz_callout_important: var(--blue-6, var(--haz_site_primary, var(--accent)));
+  --haz_callout_info: var(--blue-6, var(--haz_site_primary, var(--accent)));
+  --haz_callout_love: var(--red-7, var(--code));
+  --haz_callout_note: var(--text-light, var(--border));
+  --haz_callout_peace: var(--blue-6, var(--haz_site_primary, var(--accent)));
+  --haz_callout_sad: var(--yellow-7, var(--marked));
+  --haz_callout_steps: var(--haz_site_primary);
+  --haz_callout_tip: var(--yellow-7, var(--marked));
+  --haz_callout_warning: var(--red-7, var(--code));
+
+  /*
+    Measure + fluid type (#70 / child #87 calculator, OP stack).
+    A: --haz_measure_px (OP --size-lg = 1024). Gutter 95% → 90% from lg.
+    Two clamps, seam at lg (1024) — no cliff. Headings = rem of root (#30).
+    Band 1: 1rem @ ~320 → 1.125rem @ ~1024.
+    Band 2: 1.125rem @ ~1024 → 1.4rem @ ~A (90% of measure).
+  */
+  --haz_measure_px: var(--size-lg);
+  --haz_measure: min(var(--haz_measure_px), 95%);
+  --haz_font_size: clamp(1rem, 0.9432rem + 0.2841vw, 1.125rem);
+
+  /* Motion — HAZ keys; values from OP (or plain times). */
+  --haz_ease: var(--ease-2);
+  --haz_nav_panel_duration: 0.28s;
+  --haz_nav_panel_duration_fade: 0.22s;
+  --haz_nav_panel_max_height: var(--size-15);
+
+  /* Simple ← OP crayons (light defaults) */
+  --bg: var(--gray-0);
+  --accent-bg: var(--gray-2);
+  --text: var(--gray-12);
+  --text-light: var(--gray-7);
+  --border: var(--gray-6);
+  --accent: var(--haz_site_primary);
+  --accent-hover: var(--haz_site_primary_hover);
+  --accent-text: var(--bg);
+  --code: var(--pink-8);
+  --preformatted: var(--gray-8);
+  --marked: var(--yellow-3);
+  --disabled: var(--gray-3);
+  /* Fence fill. A step darker than the page and the callout. */
+  --haz_pre_bg: var(--gray-3);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --haz_measure: min(var(--haz_measure_px), 90%);
+    --haz_font_size: clamp(1.125rem, -1.35rem + 3.8672vw, 1.4rem);
+  }
+}
+
+/* Root fluid type — override Simple’s fixed body 1.15rem so rem headings follow. */
+html {
+  font-size: var(--haz_font_size);
+}
+
+body {
+  font-size: 1rem;
+}
+
+/* HAZ data-theme toggle (wins over Simple’s prefers-color-scheme / .dark) */
+html[data-theme="light"] {
+  color-scheme: light;
+  --haz_site_primary: var(--pink-7);
+  --haz_site_primary_hover: var(--pink-8);
+  --bg: var(--gray-0);
+  --accent-bg: var(--gray-2);
+  --text: var(--gray-12);
+  --text-light: var(--gray-7);
+  --border: var(--gray-6);
+  --accent: var(--haz_site_primary);
+  --accent-hover: var(--haz_site_primary_hover);
+  --accent-text: var(--bg);
+  --code: var(--pink-8);
+  --preformatted: var(--gray-8);
+  --marked: var(--yellow-3);
+  --disabled: var(--gray-3);
+  /* Fence fill. A step darker than the page and the callout. */
+  --haz_pre_bg: var(--gray-3);
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --haz_site_primary: var(--pink-5);
+  --haz_site_primary_hover: var(--pink-3);
+  /* Simple: body --bg; header --accent-bg. Header black; body near-black (last OP step). */
+  --bg: var(--gray-12);
+  --accent-bg: #000;
+  --text: var(--gray-1);
+  --text-light: var(--gray-4);
+  --border: var(--gray-7);
+  --accent: var(--haz_site_primary);
+  --accent-hover: var(--haz_site_primary_hover);
+  --accent-text: var(--bg);
+  --code: var(--pink-3);
+  --preformatted: var(--gray-4);
+  /* Off-black fence. Lighter than the page (gray-12) and the black callout. */
+  --haz_pre_bg: var(--gray-9);
+  --marked: var(--yellow-3);
+  --disabled: var(--gray-8);
+  /* Body is near-black. accent-bg is black, so it cannot mark the active tab. */
+  --haz_do_tab_fill: var(--gray-9);
+}
+
+/* Light accent background is the same grey as the open fill, so a closed details looks filled. */
+html[data-theme="light"] details:not([open]) {
+  background-color: transparent;
+}
+
+/* Open details shares the tab surface. */
+details[open] {
+  background-color: var(--haz_do_tab_fill, var(--accent-bg));
+}

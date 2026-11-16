@@ -98,6 +98,8 @@ atoms:
         preset: content/presets/atomic/atoms/head_tags/document_title_000_00.yaml
         cms:
           provider: page
+      props:
+        _prefix_singular: false
       children:
         enabled_false:
           enabled: false
@@ -347,9 +349,20 @@ atoms:
           inst: todo
         content:
           enabled: true
-          level: atoms
+          level: molecules
           group: page
-          inst: page_title_000
+          inst: page_title_prefix_singular_000
+    taxonomy_singular_000:
+      enabled: true
+      part:
+        file: haz/atomic/atoms/hugo_taxonomy_singular.html
+      props: {}
+      children:
+        enabled_false:
+          enabled: false
+          child: taxonomy_singular_000_false
+          level: atoms
+          inst: todo
     page_title_000:
       enabled: true
       part:
@@ -858,12 +871,102 @@ atoms:
           child: blog_content_000_false
           level: atoms
           inst: todo
+    paging_nav_000:
+      enabled: true
+      part:
+        file: haz/atomic/atoms/tag_tag_wrapper.html
+      props:
+        tag: nav
+        content_required: true
+        attrs:
+          class: haz_pager
+          aria:
+            label: Pagination
+      children:
+        enabled_false:
+          enabled: false
+          child: paging_nav_000_false
+          level: atoms
+          inst: todo
+        content:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: paging_000
+    paging_000:
+      enabled: true
+      part:
+        file: haz/helpers/multipliers/multiplier.html
+      props:
+        order:
+        - prev
+        - numbers
+        - next
+      children:
+        enabled_false:
+          enabled: false
+          child: paging_000_false
+          level: atoms
+          inst: todo
+        prev:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: paging_prev_000
+        numbers:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: paging_numbers_000
+        next:
+          enabled: true
+          level: atoms
+          group: blog
+          inst: paging_next_000
+    paging_prev_000:
+      enabled: true
+      part:
+        file: haz/atomic/atoms/paging_prev_000.html
+      props:
+        class: haz_pager__prev
+        label: Prev
+      children:
+        enabled_false:
+          enabled: false
+          child: paging_prev_000_false
+          level: atoms
+          inst: todo
+    paging_numbers_000:
+      enabled: true
+      part:
+        file: haz/atomic/atoms/paging_numbers_000.html
+      props:
+        class: haz_pager__numbers
+        page_class: haz_pager__page
+      children:
+        enabled_false:
+          enabled: false
+          child: paging_numbers_000_false
+          level: atoms
+          inst: todo
+    paging_next_000:
+      enabled: true
+      part:
+        file: haz/atomic/atoms/paging_next_000.html
+      props:
+        class: haz_pager__next
+        label: Next
+      children:
+        enabled_false:
+          enabled: false
+          child: paging_next_000_false
+          level: atoms
+          inst: todo
     blog_pages_list_000:
       enabled: true
       part:
-        file: haz/atomic/atoms/hugo_pages_list_000.html
+        file: haz/atomic/atoms/hugo_pagination_list_000.html
       props:
-        method: .Pages
         list_type: ul
         attrs:
           class: haz_pages_list
@@ -987,6 +1090,20 @@ atoms:
       attr_listen: haz_modal
       attr_dialog: haz_modal_dialog
       attr_focus: haz_modal_focus
+    children:
+      enabled_false:
+        enabled: false
+  script_embla_init_000:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/assets/js/script_embla_init_000.html
+    children:
+      enabled_false:
+        enabled: false
+  script_grid_more_000:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/assets/js/script_grid_more_000.html
     children:
       enabled_false:
         enabled: false
@@ -1376,47 +1493,162 @@ atoms:
         enabled: false
         inst: todo
   # Parked on purpose (not dead noise): demo Pico→Simple switch.
-  # To try Simple: rename this key to framework_css_simple_css (drop leading _)
-  # and set multipliers head_main → framework_css.inst to that key.
-  # Live graph stays framework_css_pico_css.
+  # Live: silos under multipliers enqueue_header. Pico parked.
   _framework_css_simple_css:
     enabled: true
     part:
-      file: haz/atomic/atoms/framework_css.html
+      file: haz/atomic/atoms/enqueue_000.html
     props:
-      css:
-        1_main: css/simple/simple.min.css
-        2_extended: css/simple/simple-extended.css
-        3_overrides: child/css/simple/simple-override.css
+      collection:
+        1_main:
+          src: css/simple/simple.min.css
+        2_extended:
+          src: css/simple/simple-extended.css
+        3_overrides:
+          src: child/css/simple/simple-override.css
     children:
       enabled_false:
         enabled: false
         child: framework_css_simple_css_false
         level: atoms
         inst: todo
-  framework_css_pico_css:
+  _framework_css_pico_css:
     enabled: true
     part:
-      file: haz/atomic/atoms/framework_css.html
+      file: haz/atomic/atoms/enqueue_000.html
     props:
-      css:
-        1_main: css/pico/pico.pink.min.css
-        # vanilla still on disk: css/pico/pico.min.css — swap 1_main to demo theme switch
-        2_haz: css/haz/haz.css
-        3_extended: css/pico/pico-x-agent-zero.css
-        4_overrides: child/css/pico/pico-override.css
+      collection:
+        1_main:
+          src: css/pico/pico.pink.min.css
+        2_haz:
+          src: css/haz/haz.css
+        3_extended:
+          src: css/pico/pico-x-agent-zero.css
+        4_overrides:
+          src: child/css/pico/pico-override.css
     children:
       enabled_false:
         enabled: false
         child: framework_css_pico_css_false
         level: atoms
         inst: todo
+  # Parked mega (Phase 1). Live = enqueue_* silos + enqueue_header multiplier.
+  _framework_css_open_props:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/enqueue_000.html
+    props:
+      collection:
+        1_props:
+          src: css/open-props/open-props.min.css
+        2_simple:
+          src: css/simple/simple.min.css
+        3_simple_x:
+          src: css/simple/simple-x-agent-zero.css
+        4_haz:
+          src: css/haz/haz.css
+        5_theme:
+          src: child/css/theme.css
+        6_fonts:
+          src: child/css/fonts.css
+        7_site_header:
+          src: child/css/site_header.css
+        8_site_footer:
+          src: child/css/site_footer.css
+        9_socials:
+          src: child/css/socials.css
+    children:
+      enabled_false:
+        enabled: false
+        child: framework_css_open_props_false
+        level: atoms
+        inst: todo
+  # #95 cascade silos — mounted only via multipliers enqueue_header.
+  enqueue_open_props:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/enqueue_000.html
+    props:
+      collection:
+        1_props:
+          src: css/open-props/open-props.min.css
+    children:
+      enabled_false:
+        enabled: false
+        child: enqueue_open_props_false
+        level: atoms
+        inst: todo
+  enqueue_simple:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/enqueue_000.html
+    props:
+      collection:
+        1_simple:
+          src: css/simple/simple.min.css
+        2_simple_x:
+          src: css/simple/simple-x-agent-zero.css
+    children:
+      enabled_false:
+        enabled: false
+        child: enqueue_simple_false
+        level: atoms
+        inst: todo
+  enqueue_haz:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/enqueue_000.html
+    props:
+      collection:
+        1_haz:
+          src: css/haz/haz.css
+    children:
+      enabled_false:
+        enabled: false
+        child: enqueue_haz_false
+        level: atoms
+        inst: todo
+  enqueue_haz_img:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/enqueue_000.html
+    props:
+      collection:
+        1_haz_img:
+          src: css/haz/haz_img.css
+    children:
+      enabled_false:
+        enabled: false
+        child: enqueue_haz_img_false
+        level: atoms
+        inst: todo
+  enqueue_child:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/enqueue_000.html
+    props:
+      collection:
+        1_theme:
+          src: child/css/theme.css
+        2_fonts:
+          src: child/css/fonts.css
+        3_site_header:
+          src: child/css/site_header.css
+        4_site_footer:
+          src: child/css/site_footer.css
+        5_socials:
+          src: child/css/socials.css
+    children:
+      enabled_false:
+        enabled: false
+        child: enqueue_child_false
+        level: atoms
+        inst: todo
   _enqueue_head:
     enabled: false
     part:
-      file: haz/atomic/atoms/_enqueue_000.html
-    props:
-      location: head
+      file: haz/atomic/atoms/enqueue_000.html
+    props: {}
     children:
       enabled_false:
         enabled: false
@@ -1426,9 +1658,9 @@ atoms:
   _enqueue_footer:
     enabled: false
     part:
-      file: haz/atomic/atoms/_enqueue_000.html
+      file: haz/atomic/atoms/enqueue_000.html
     props:
-      location: footer
+      in_footer: true
     children:
       enabled_false:
         enabled: false

@@ -28,6 +28,11 @@ socials:
               url: https://instagram.com/
               icon: instagram
               target: _blank
+            - name: RSS
+              enabled: true
+              type: feed
+              url: /blog/index.xml
+              icon: rss
             - name: Email
               enabled: true
               type: mail

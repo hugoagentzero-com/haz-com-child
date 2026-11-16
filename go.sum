@@ -1,4 +1,6 @@
-github.com/hugo-agent-zero/hugo-agent-zero-core v1.0.1-0.20260916230255-45957094370b h1:pZ1X6Xe9brkuy44WcluLjXJgdehvP+Y+FZGEYNHKCWU=
-github.com/hugo-agent-zero/hugo-agent-zero-core v1.0.1-0.20260916230255-45957094370b/go.mod h1:lQf8ZgwIUhsQGIAKWB+11Gz6yrzxoQ/1rTO6UyNKWQQ=
+github.com/hugo-agent-zero/hugo-agent-zero-core v1.0.1-0.20261030161239-94cf3561f8ab h1:oblBHL0ycxe9w/TT4ELSMR5JCNw0kKIKTgLLfgfRYpI=
+github.com/hugo-agent-zero/hugo-agent-zero-core v1.0.1-0.20261030161239-94cf3561f8ab/go.mod h1:lQf8ZgwIUhsQGIAKWB+11Gz6yrzxoQ/1rTO6UyNKWQQ=
 github.com/hugoagentzero-com/haz-com-content v0.0.0-20260923204224-a679e357ea33 h1:9uGOtVeX6uEyHKLWaRz4w4qm9DSVf36wxJ+ICSR6jDo=
 github.com/hugoagentzero-com/haz-com-content v0.0.0-20260923204224-a679e357ea33/go.mod h1:QEcsbjoW3dgSbITU6ANwrjWX95raC7WYqwtjJkY+QEc=
+github.com/hugoagentzero-com/haz-com-content v0.0.0-20260924134150-949967c8f4f9 h1:nMUaywouurAAByiMzh4N+5bIX88IjKt4BEcUJcS0f2o=
+github.com/hugoagentzero-com/haz-com-content v0.0.0-20260924134150-949967c8f4f9/go.mod h1:QEcsbjoW3dgSbITU6ANwrjWX95raC7WYqwtjJkY+QEc=
