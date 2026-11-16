@@ -1,7 +1,7 @@
 settings:
   site:
     name: Hugo Agent Zero
-    tagline: The is our FPO Hugo Agent Zero Tag Line
+    tagline: Client-friendly. Developer-focused. Agents love it.
     copyright: Hugo Agent Zero # legal holder; may differ from site.name
   # Traditional mins (Open Props --sm / --md / --size-lg).
   # m = tablet min. t = desktop min. d = column, not a third img/grid hop.
