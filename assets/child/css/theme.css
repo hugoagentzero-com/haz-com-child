@@ -151,3 +151,7 @@ details[open] {
 .haz_do_callout.haz_callout_icon_top {
   align-items: start;
 }
+
+.haz_do_callout.haz_callout_icon_top::before {
+  margin-top: 0.5rem;
+}
