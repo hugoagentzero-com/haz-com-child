@@ -141,3 +141,8 @@ html[data-theme="light"] details:not([open]) {
 details[open] {
   background-color: var(--haz_do_tab_fill, var(--accent-bg));
 }
+
+/* Force callout accent to site primary (icons + title). Mood type still picks the icon. */
+.haz_do_callout.haz_force_site_primary {
+  --haz_callout_accent: var(--haz_site_primary);
+}
