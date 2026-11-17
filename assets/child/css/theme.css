@@ -146,3 +146,8 @@ details[open] {
 .haz_do_callout.haz_force_site_primary {
   --haz_callout_accent: var(--haz_site_primary);
 }
+
+/* Top-align icon column (kit default is vertically centered — odd on tall callouts). */
+.haz_do_callout.haz_callout_icon_top {
+  align-items: start;
+}
