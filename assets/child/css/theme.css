@@ -155,3 +155,8 @@ details[open] {
 .haz_do_callout.haz_callout_icon_top::before {
   margin-top: 0.5rem;
 }
+
+/* Sticky site header covers the top of anchored callouts. Offset jump targets. */
+.haz_do_callout[id] {
+  scroll-margin-top: 5rem;
+}
