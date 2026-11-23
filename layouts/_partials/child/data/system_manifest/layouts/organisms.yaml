@@ -63,6 +63,10 @@ organisms:
           enabled: true
           level: atoms
           inst: copyright_000
+        after_row:
+          enabled: true
+          level: atoms
+          inst: back_to_top_000
   sections:
     default_000:
       enabled: true
