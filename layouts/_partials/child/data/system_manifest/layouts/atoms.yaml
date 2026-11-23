@@ -1501,7 +1501,7 @@ atoms:
       aria_label: Back to Top
       attrs:
         href: "#top"
-        class: haz_back_to_top
+        class: haz_btn haz_back_to_top
     children:
       enabled_false:
         enabled: false
