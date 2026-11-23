@@ -3,6 +3,9 @@ settings:
     name: Hugo Agent Zero
     tagline: Client-friendly. Developer-focused. Agents love it.
     copyright: Hugo Agent Zero # legal holder; may differ from site.name
+  # Back to top chrome (#191). Page FM haz_back_to_top: false opts out.
+  back_to_top:
+    enabled: true
   # Traditional mins (Open Props --sm / --md / --size-lg).
   # m = tablet min. t = desktop min. d = column, not a third img/grid hop.
   # Readers prefer this. The old max-of-band stamp is parked at haz_img.config._max_px.

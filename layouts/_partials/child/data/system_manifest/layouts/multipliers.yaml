@@ -286,9 +286,9 @@ multipliers:
         group: cols
         inst: cols_two_tag_wrapper_footer
       post_footer:
-        enabled: false
+        enabled: true
         level: atoms
-        inst: todo
+        inst: back_to_top_000
       # Pair with header_000_controls.search — disable both to drop kit search.
       search:
         enabled: true
