@@ -1492,6 +1492,31 @@ atoms:
       enabled_false:
         enabled: false
         inst: todo
+  back_to_top_000:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/back_to_top_000.html
+    props:
+      anchor_text: Top
+      aria_label: Back to Top
+      attrs:
+        href: "#top"
+        class: haz_back_to_top
+    children:
+      enabled_false:
+        enabled: false
+        inst: todo
+      icon:
+        enabled: true
+        level: atoms
+        inst: svg_arrow_up_000
+  svg_arrow_up_000:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/assets/svg/svg_arrow_up_000.html
+    children:
+      enabled_false:
+        enabled: false
   # Parked on purpose (not dead noise): demo Pico→Simple switch.
   # Live: silos under multipliers enqueue_header. Pico parked.
   _framework_css_simple_css:
