@@ -25,6 +25,7 @@ settings:
         - spacer
         - callout
         - list
+        - list_toc
         - tabs
         - tab
         - grid
