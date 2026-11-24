@@ -20,15 +20,18 @@ menus:
     - name: About
       pageRef: /about
       weight: 20
+    - name: What Makes
+      pageRef: /what-makes-haz-special
+      weight: 30
     - name: Getting Started
       pageRef: /getting-started
-      weight: 30
+      weight: 40
     - name: Blog
       pageRef: /blog
-      weight: 40
+      weight: 50
     - name: Contact
       pageRef: /contact
-      weight: 50
+      weight: 60
 
   tertiary:
     - name: Home
@@ -37,15 +40,18 @@ menus:
     - name: About
       pageRef: /about
       weight: 20
+    - name: What Makes
+      pageRef: /what-makes-haz-special
+      weight: 30
     - name: Getting Started
       pageRef: /getting-started
-      weight: 30
+      weight: 40
     - name: Blog
       pageRef: /blog
-      weight: 40
+      weight: 50
     - name: Contact
       pageRef: /contact
-      weight: 50
+      weight: 60
 
   # Social/profile links (stub for future use)
   # social:
