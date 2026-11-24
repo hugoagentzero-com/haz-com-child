@@ -21,7 +21,7 @@ menus:
       pageRef: /about
       weight: 20
     - name: What Makes
-      pageRef: /what-makes
+      pageRef: /what-makes-haz-special
       weight: 30
     - name: Getting Started
       pageRef: /getting-started
@@ -41,7 +41,7 @@ menus:
       pageRef: /about
       weight: 20
     - name: What Makes
-      pageRef: /what-makes
+      pageRef: /what-makes-haz-special
       weight: 30
     - name: Getting Started
       pageRef: /getting-started
