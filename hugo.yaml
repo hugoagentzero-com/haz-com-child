@@ -20,7 +20,7 @@ menus:
     - name: About
       pageRef: /about
       weight: 20
-    - name: What Makes
+    - name: What Makes HAZ Special?
       pageRef: /what-makes-haz-special
       weight: 30
     - name: Getting Started
@@ -40,7 +40,7 @@ menus:
     - name: About
       pageRef: /about
       weight: 20
-    - name: What Makes
+    - name: What Makes HAZ Special?
       pageRef: /what-makes-haz-special
       weight: 30
     - name: Getting Started
