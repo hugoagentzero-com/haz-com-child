@@ -21,7 +21,7 @@ menus:
       pageRef: /about
       weight: 20
     - name: How Much Joy Can HAZ Bring You?
-      pageRef: /what-makes-haz-special
+      pageRef: /how-much-joy-can-haz-bring-you
       weight: 30
     - name: Getting Started
       pageRef: /getting-started
@@ -41,7 +41,7 @@ menus:
       pageRef: /about
       weight: 20
     - name: How Much Joy Can HAZ Bring You?
-      pageRef: /what-makes-haz-special
+      pageRef: /how-much-joy-can-haz-bring-you
       weight: 30
     - name: Getting Started
       pageRef: /getting-started
