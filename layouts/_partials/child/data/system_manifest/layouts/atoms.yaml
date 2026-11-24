@@ -1509,7 +1509,14 @@ atoms:
       icon:
         enabled: true
         level: atoms
-        inst: svg_arrow_up_000
+        inst: svg_chevron_up_000
+  svg_chevron_up_000:
+    enabled: true
+    part:
+      file: haz/atomic/atoms/assets/svg/svg_chevron_up_000.html
+    children:
+      enabled_false:
+        enabled: false
   svg_arrow_up_000:
     enabled: true
     part:
