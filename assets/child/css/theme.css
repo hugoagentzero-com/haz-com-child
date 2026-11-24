@@ -160,3 +160,13 @@ details[open] {
 .haz_do_callout[id] {
   scroll-margin-top: 5rem;
 }
+
+/* Callout body lists: icon column already gutters the left — keep list indent tight (mobile).
+   Site-specific; not a kit default. */
+.haz_do_callout__body > :is(ol, ul) {
+  padding-inline-start: 1rem;
+}
+
+.haz_do_callout__body :is(ol, ul) :is(ol, ul) {
+  padding-inline-start: 0.75rem;
+}
